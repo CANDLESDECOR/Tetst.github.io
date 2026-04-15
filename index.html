@@ -3,259 +3,189 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>CANDLES HOME</title>
 
 <style>
+
 body{
-  margin:0;
-  font-family:Arial;
-  color:#fff;
-  background:
-    linear-gradient(135deg,#111,#1c1c1c);
-}
-
-.page{
-  max-width:500px;
-  margin:auto;
-  padding:20px;
-}
-
-/* стекло */
-.glass{
-  background:rgba(255,255,255,0.12);
-  backdrop-filter:blur(25px);
-  border:1px solid rgba(255,255,255,0.2);
-  border-radius:25px;
-  padding:15px;
-  margin-bottom:20px;
+    margin:0;
+    font-family: Arial;
+    background: linear-gradient(145deg,#0f0f0f,#1a1a1a);
+    color:#fff;
 }
 
 /* заголовок */
-.title{
-  font-size:28px;
-  font-weight:bold;
-  margin-bottom:15px;
+h1{
+    padding:20px;
+    font-size:28px;
+}
+
+/* КАРТОЧКИ */
+.card, .form, .bottom{
+    margin:15px;
+    padding:18px;
+    border-radius:22px;
+
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(25px);
+
+    border:1px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,0.2),
+        inset 0 -2px 6px rgba(0,0,0,0.4),
+        0 15px 40px rgba(0,0,0,0.7),
+        0 5px 15px rgba(255,255,255,0.05);
+
+    position:relative;
+}
+
+/* БЛИК */
+.card::before, .form::before, .bottom::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:50%;
+    border-radius:22px;
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.25),
+        rgba(255,255,255,0.05),
+        transparent
+    );
 }
 
 /* карусель */
-.carousel{
-  display:flex;
-  gap:12px;
-  overflow-x:auto;
+.slider{
+    display:flex;
+    gap:10px;
+    overflow-x:auto;
 }
 
-.card{
-  min-width:200px;
-  padding:12px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.15);
-  transition:0.2s;
-}
-
-/* подсветка */
-.card.active{
-  border:1px solid #fff;
-  box-shadow:0 0 20px rgba(255,255,255,0.5);
-  transform:scale(1.03);
-}
-
-.card img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:15px;
-}
-
-.card-name{
-  font-size:16px;
-  margin:8px 0;
-}
-
-.card-price s{
-  color:#888;
-}
-
-.card-price{
-  font-size:18px;
-  margin-bottom:10px;
+.item{
+    min-width:180px;
 }
 
 /* кнопка */
 .btn{
-  width:100%;
-  padding:12px;
-  border:none;
-  border-radius:12px;
-  background:rgba(255,255,255,0.15);
-  backdrop-filter:blur(20px);
-  color:#fff;
+    margin-top:10px;
+    padding:14px;
+    border-radius:18px;
+    text-align:center;
+
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(20px);
+
+    border:1px solid rgba(255,255,255,0.15);
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,0.3),
+        inset 0 -2px 6px rgba(0,0,0,0.5),
+        0 8px 20px rgba(0,0,0,0.6),
+        0 2px 6px rgba(255,255,255,0.1);
+
+    cursor:pointer;
 }
 
-/* форма */
-.form input{
-  width:100%;
-  padding:12px;
-  margin-bottom:10px;
-  border:none;
-  border-radius:10px;
-  background:rgba(255,255,255,0.1);
-  color:#fff;
+/* поля */
+input, select{
+    width:100%;
+    padding:14px;
+    margin-top:10px;
+
+    border-radius:14px;
+    border:none;
+
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+
+    color:#fff;
 }
 
-.submit{
-  width:100%;
-  padding:15px;
-  border:none;
-  border-radius:12px;
-  background:rgba(255,255,255,0.2);
-  color:#fff;
-  font-size:16px;
+/* цены */
+.old{
+    text-decoration: line-through;
+    opacity:0.5;
 }
 
-/* низ */
-.links{
-  display:flex;
-  gap:10px;
-}
-
-.links a{
-  flex:1;
-  text-align:center;
-  padding:12px;
-  border-radius:10px;
-  background:rgba(255,255,255,0.1);
-  color:#fff;
-  text-decoration:none;
-}
 </style>
-
 </head>
 
 <body>
 
-<div class="page">
+<h1>CANDLES HOME</h1>
 
-<div class="title">CANDLES HOME</div>
+<div class="card">
+<div class="slider">
 
-<!-- ТОВАРЫ -->
-<div class="glass">
-<div class="carousel" id="carousel">
-
-<div class="card" onclick="selectProduct(this,'Коньячний бокал')">
-<img src="1.jpg">
-<div class="card-name">Коньячний бокал</div>
-<div class="card-price"><s>400</s> 299 грн 🔥</div>
-<button class="btn">Обрати</button>
+<div class="item">
+Коньячный бокал<br>
+<span class="old">400</span> 299 грн 🔥
+<div class="btn">Обрати</div>
 </div>
 
-<div class="card" onclick="selectProduct(this,'Свічка Кава')">
-<img src="2.jpg">
-<div class="card-name">Свічка Кава</div>
-<div class="card-price"><s>260</s> 159 грн 🔥</div>
-<button class="btn">Обрати</button>
+<div class="item">
+Свічка Кава<br>
+<span class="old">260</span> 159 грн 🔥
+<div class="btn">Обрати</div>
 </div>
 
-<div class="card" onclick="selectProduct(this,'Десерт')">
-<img src="3.jpg">
-<div class="card-name">Десерт</div>
-<div class="card-price"><s>320</s> 219 грн 🔥</div>
-<button class="btn">Обрати</button>
+<div class="item">
+Десерт<br>
+<span class="old">320</span> 219 грн 🔥
+<div class="btn">Обрати</div>
 </div>
 
-<div class="card" onclick="selectProduct(this,'Свеча в кашпо')">
-<img src="4.jpg">
-<div class="card-name">Свеча в кашпо</div>
-<div class="card-price"><s>260</s> 159 грн 🔥</div>
-<button class="btn">Обрати</button>
+<div class="item">
+Свічка в кашпо<br>
+<span class="old">260</span> 159 грн 🔥
+<div class="btn">Обрати</div>
 </div>
 
-<div class="card" onclick="selectProduct(this,'Кашпо + чайні свічки')">
-<img src="5.jpg">
-<div class="card-name">Кашпо + чайні свічки</div>
-<div class="card-price"><s>250</s> 149 грн 🔥</div>
-<button class="btn">Обрати</button>
+<div class="item">
+Кашпо + свічки<br>
+<span class="old">250</span> 149 грн 🔥
+<div class="btn">Обрати</div>
 </div>
 
-<div class="card" onclick="selectProduct(this,'Бокал Шампань')">
-<img src="6.jpg">
-<div class="card-name">Бокал Шампань</div>
-<div class="card-price"><s>300</s> 199 грн 🔥</div>
-<button class="btn">Обрати</button>
+<div class="item">
+Бокал Шампань<br>
+<span class="old">300</span> 199 грн 🔥
+<div class="btn">Обрати</div>
 </div>
 
 </div>
 </div>
 
-<!-- ФОРМА -->
-<div class="glass form" id="formBlock">
+<div class="form">
+<h2>Оформлення замовлення</h2>
 
-<h3>Оформлення замовлення</h3>
+<select>
+<option>Оберіть товар</option>
+</select>
 
-<input type="text" id="product" placeholder="Оберіть товар" readonly>
-<input type="text" id="name" placeholder="Ваше ім'я">
-<input type="text" id="phone" placeholder="Телефон">
-<input type="text" id="city" placeholder="Місто НП">
-<input type="text" id="post" placeholder="Відділення НП">
+<input placeholder="Ваше ім'я">
+<input placeholder="Телефон">
+<input placeholder="Місто НП">
+<input placeholder="Відділення НП">
 
-<button class="submit" onclick="send()">Замовити</button>
-
-</div>
-
-<!-- НИЗ -->
-<div class="glass">
-<p>Більше асортименту:</p>
-
-<div class="links">
-<a href="https://t.me/Candles_Home_UA">Telegram</a>
-<a href="https://www.instagram.com/candleshome.store">Instagram</a>
-</div>
+<div class="btn">Замовити</div>
 
 </div>
 
+<div class="bottom">
+<h3>Більше асортименту:</h3>
+
+<div style="display:flex;gap:10px;">
+<div class="btn">Telegram</div>
+<div class="btn">Instagram</div>
 </div>
 
-<script>
-
-let selectedProduct = "";
-
-// выбор товара + подсветка
-function selectProduct(el, product){
-  selectedProduct = product;
-  document.getElementById("product").value = product;
-
-  document.querySelectorAll(".card").forEach(c=>c.classList.remove("active"));
-  el.classList.add("active");
-
-  document.getElementById("formBlock").scrollIntoView({behavior:"smooth"});
-}
-
-// отправка
-function send(){
-
-let text =
-"🔥 ЗАМОВЛЕННЯ\n\n" +
-"🕯 " + selectedProduct + "\n\n" +
-"👤 " + document.getElementById("name").value + "\n" +
-"📞 " + document.getElementById("phone").value + "\n\n" +
-"📦 " + document.getElementById("city").value + " / " +
-document.getElementById("post").value;
-
-fetch("https://api.telegram.org/bot8702255517:AAHdzzS7_nOaNBKathOolHZO0bG7b8d7uOw/sendMessage",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-chat_id:"8629717657",
-text:text
-})
-});
-
-alert("Заявка відправлена 🔥");
-
-}
-
-</script>
+</div>
 
 </body>
 </html>
