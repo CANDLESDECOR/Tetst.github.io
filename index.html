@@ -1,288 +1,175 @@
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CANDLES HOME</title>
 
 <style>
-
 body{
     margin:0;
-    font-family: Arial;
-    background: linear-gradient(145deg,#0f0f0f,#1a1a1a);
+    font-family:Arial;
     color:#fff;
+    background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.04), transparent),
+    linear-gradient(135deg,#0d0d0d,#1a1a1a);
 }
 
-/* заголовок */
-h1{
+.title{
+    text-align:center;
+    font-size:36px;
+    font-weight:900;
+    margin:30px 0;
+    background: linear-gradient(180deg,#fff,#aaa);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.glass{
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(25px);
+    border-radius:25px;
+    border:1px solid rgba(255,255,255,0.1);
     padding:20px;
-    font-size:28px;
+    margin:20px;
 }
 
-/* КАРТОЧКИ */
-.card, .form, .bottom{
-    margin:15px;
-    padding:18px;
-    border-radius:22px;
-
-    background: rgba(255,255,255,0.06);
-    backdrop-filter: blur(25px);
-
-    border:1px solid rgba(255,255,255,0.12);
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,0.2),
-        inset 0 -2px 6px rgba(0,0,0,0.4),
-        0 15px 40px rgba(0,0,0,0.7),
-        0 5px 15px rgba(255,255,255,0.05);
-
-    position:relative;
-}
-
-/* БЛИК */
-.card::before, .form::before, .bottom::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    right:0;
-    height:50%;
-    border-radius:22px;
-
-    background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.25),
-        rgba(255,255,255,0.05),
-        transparent
-    );
-}
-
-/* карусель */
 .slider{
     display:flex;
-    gap:10px;
+    gap:15px;
     overflow-x:auto;
 }
 
 .item{
-    min-width:180px;
+    min-width:230px;
+    padding:15px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.06);
 }
 
-/* кнопка */
+.item img{
+    width:100%;
+    height:180px;
+    object-fit:cover;
+    border-radius:15px;
+    margin-bottom:10px;
+}
+
+.item.selected{
+    box-shadow:0 0 25px rgba(255,255,255,0.4);
+}
+
 .btn{
-    margin-top:10px;
-    padding:14px;
-    border-radius:18px;
+    display:block;
     text-align:center;
-
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(20px);
-
-    border:1px solid rgba(255,255,255,0.15);
-
-    box-shadow:
-        inset 0 1px 2px rgba(255,255,255,0.3),
-        inset 0 -2px 6px rgba(0,0,0,0.5),
-        0 8px 20px rgba(0,0,0,0.6),
-        0 2px 6px rgba(255,255,255,0.1);
-
-    cursor:pointer;
+    padding:12px;
+    border-radius:20px;
+    margin-top:10px;
+    background:rgba(255,255,255,0.1);
 }
 
-/* поля */
 input, select{
     width:100%;
     padding:14px;
-    margin-top:10px;
-
-    border-radius:14px;
+    margin:10px 0;
     border:none;
-
-    background: rgba(255,255,255,0.07);
-    backdrop-filter: blur(20px);
-
+    border-radius:15px;
+    background:rgba(255,255,255,0.1);
     color:#fff;
 }
-
-/* цены */
-.old{
-    text-decoration: line-through;
-    opacity:0.5;
-}
-
-/* ПОДСВЕТКА */
-.item.selected{
-  border:1px solid rgba(255,255,255,0.45);
-  box-shadow:
-    0 0 0 1px rgba(255,255,255,0.15) inset,
-    0 12px 30px rgba(255,255,255,0.10),
-    0 18px 40px rgba(0,0,0,0.55);
-  transform:translateY(-2px);
-  border-radius:18px;
-  padding:8px;
-}
-
-.item.selected .btn{
-  background:rgba(255,255,255,0.18) !important;
-  border:1px solid rgba(255,255,255,0.35);
-}
-
 </style>
 </head>
 
 <body>
 
-<h1>CANDLES HOME</h1>
+<div class="title">CANDLES HOME</div>
 
-<div class="card">
+<div class="glass">
 <div class="slider">
 
 <div class="item">
-Коньячний бокал<br>
-<span class="old">400</span> 299 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Коньячний бокал')">Обрати</div>
+<img src="1.jpeg">
+Коньячный бокал<br>
+<s>400</s> 299 грн 🔥
+<div class="btn" onclick="selectProduct(this,'Коньячный бокал')">Обрати</div>
 </div>
 
 <div class="item">
+<img src="2.jpeg">
 Свічка Кава<br>
-<span class="old">260</span> 159 грн 🔥
+<s>260</s> 159 грн 🔥
 <div class="btn" onclick="selectProduct(this,'Свічка Кава')">Обрати</div>
 </div>
 
 <div class="item">
+<img src="3.jpeg">
 Десерт<br>
-<span class="old">320</span> 219 грн 🔥
+<s>320</s> 219 грн 🔥
 <div class="btn" onclick="selectProduct(this,'Десерт')">Обрати</div>
 </div>
 
 <div class="item">
+<img src="4.jpeg">
 Свічка в кашпо<br>
-<span class="old">260</span> 159 грн 🔥
+<s>260</s> 159 грн 🔥
 <div class="btn" onclick="selectProduct(this,'Свічка в кашпо')">Обрати</div>
 </div>
 
 <div class="item">
+<img src="5.jpeg">
 Кашпо + свічки<br>
-<span class="old">250</span> 149 грн 🔥
+<s>250</s> 149 грн 🔥
 <div class="btn" onclick="selectProduct(this,'Кашпо + свічки')">Обрати</div>
 </div>
 
 <div class="item">
+<img src="6.jpeg">
 Бокал Шампань<br>
-<span class="old">300</span> 199 грн 🔥
+<s>300</s> 199 грн 🔥
 <div class="btn" onclick="selectProduct(this,'Бокал Шампань')">Обрати</div>
 </div>
 
 </div>
 </div>
 
-<div class="form">
+<div class="glass">
 <h2>Оформлення замовлення</h2>
 
 <select id="product">
 <option value="">Оберіть товар</option>
 </select>
 
-<input id="name" placeholder="Ваше ім'я">
+<input id="name" placeholder="Ваше ім’я">
 <input id="phone" placeholder="Телефон">
 <input id="city" placeholder="Місто НП">
 <input id="post" placeholder="Відділення НП">
 
 <div class="btn" onclick="sendOrder()">Замовити</div>
-
-</div>
-
-<div class="bottom">
-<h3>Більше асортименту:</h3>
-
-<div style="display:flex;gap:10px;">
-<div class="btn">Telegram</div>
-<div class="btn">Instagram</div>
-</div>
-
 </div>
 
 <script>
-let selectedProduct = "";
+let selectedProduct="";
 
-function selectProduct(button, product){
-  selectedProduct = product;
+function selectProduct(btn,product){
+selectedProduct=product;
+document.getElementById("product").innerHTML =
+"<option>"+product+"</option>";
 
-  const productSelect = document.getElementById("product");
-  productSelect.innerHTML = '<option value="' + product + '">' + product + '</option>';
-  productSelect.value = product;
-
-  document.querySelectorAll(".item").forEach(item => {
-    item.classList.remove("selected");
-  });
-
-  button.parentElement.classList.add("selected");
+document.querySelectorAll(".item").forEach(i=>i.classList.remove("selected"));
+btn.parentElement.classList.add("selected");
 }
 
 function sendOrder(){
-  const product = selectedProduct || document.getElementById("product").value;
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const city = document.getElementById("city").value.trim();
-  const post = document.getElementById("post").value.trim();
-
-  if(!product){
-    alert("Оберіть товар");
-    return;
-  }
-
-  if(!name){
-    alert("Введіть ім'я");
-    return;
-  }
-
-  if(!phone){
-    alert("Введіть телефон");
-    return;
-  }
-
-  if(!city){
-    alert("Введіть місто НП");
-    return;
-  }
-
-  if(!post){
-    alert("Введіть відділення НП");
-    return;
-  }
-
-  const text =
-`🔥 НОВЕ ЗАМОВЛЕННЯ
-
-🕯 Товар: ${product}
-👤 Ім'я: ${name}
-📞 Телефон: ${phone}
-🏙 Місто НП: ${city}
-📦 Відділення НП: ${post}`;
-
-  fetch("https://api.telegram.org/bot8702255517:AAHdzzS7_nOaNBKathOolHZO0bG7b8d7uOw/sendMessage", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      chat_id: "8629717657",
-      text: text
-    })
-  })
-  .then(() => {
-    alert("Заявка відправлена");
-    document.getElementById("name").value = "";
-    document.getElementById("phone").value = "";
-    document.getElementById("city").value = "";
-    document.getElementById("post").value = "";
-  })
-  .catch(() => {
-    alert("Помилка відправки");
-  });
+fetch("https://api.telegram.org/botТВОЙ_ТОКЕН/sendMessage",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:"ТВОЙ_CHAT_ID",
+text:"Замовлення: "+selectedProduct
+})
+});
+alert("Заявка відправлена");
 }
 </script>
 
