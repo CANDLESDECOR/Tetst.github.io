@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
@@ -112,6 +113,23 @@ input, select{
     opacity:0.5;
 }
 
+/* ПОДСВЕТКА */
+.item.selected{
+  border:1px solid rgba(255,255,255,0.45);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.15) inset,
+    0 12px 30px rgba(255,255,255,0.10),
+    0 18px 40px rgba(0,0,0,0.55);
+  transform:translateY(-2px);
+  border-radius:18px;
+  padding:8px;
+}
+
+.item.selected .btn{
+  background:rgba(255,255,255,0.18) !important;
+  border:1px solid rgba(255,255,255,0.35);
+}
+
 </style>
 </head>
 
@@ -123,39 +141,39 @@ input, select{
 <div class="slider">
 
 <div class="item">
-Коньячный бокал<br>
+Коньячний бокал<br>
 <span class="old">400</span> 299 грн 🔥
-<div class="btn">Обрати</div>
+<div class="btn" onclick="selectProduct(this,'Коньячний бокал')">Обрати</div>
 </div>
 
 <div class="item">
 Свічка Кава<br>
 <span class="old">260</span> 159 грн 🔥
-<div class="btn">Обрати</div>
+<div class="btn" onclick="selectProduct(this,'Свічка Кава')">Обрати</div>
 </div>
 
 <div class="item">
 Десерт<br>
 <span class="old">320</span> 219 грн 🔥
-<div class="btn">Обрати</div>
+<div class="btn" onclick="selectProduct(this,'Десерт')">Обрати</div>
 </div>
 
 <div class="item">
 Свічка в кашпо<br>
 <span class="old">260</span> 159 грн 🔥
-<div class="btn">Обрати</div>
+<div class="btn" onclick="selectProduct(this,'Свічка в кашпо')">Обрати</div>
 </div>
 
 <div class="item">
 Кашпо + свічки<br>
 <span class="old">250</span> 149 грн 🔥
-<div class="btn">Обрати</div>
+<div class="btn" onclick="selectProduct(this,'Кашпо + свічки')">Обрати</div>
 </div>
 
 <div class="item">
 Бокал Шампань<br>
 <span class="old">300</span> 199 грн 🔥
-<div class="btn">Обрати</div>
+<div class="btn" onclick="selectProduct(this,'Бокал Шампань')">Обрати</div>
 </div>
 
 </div>
@@ -164,16 +182,16 @@ input, select{
 <div class="form">
 <h2>Оформлення замовлення</h2>
 
-<select>
-<option>Оберіть товар</option>
+<select id="product">
+<option value="">Оберіть товар</option>
 </select>
 
-<input placeholder="Ваше ім'я">
-<input placeholder="Телефон">
-<input placeholder="Місто НП">
-<input placeholder="Відділення НП">
+<input id="name" placeholder="Ваше ім'я">
+<input id="phone" placeholder="Телефон">
+<input id="city" placeholder="Місто НП">
+<input id="post" placeholder="Відділення НП">
 
-<div class="btn">Замовити</div>
+<div class="btn" onclick="sendOrder()">Замовити</div>
 
 </div>
 
@@ -186,6 +204,87 @@ input, select{
 </div>
 
 </div>
+
+<script>
+let selectedProduct = "";
+
+function selectProduct(button, product){
+  selectedProduct = product;
+
+  const productSelect = document.getElementById("product");
+  productSelect.innerHTML = '<option value="' + product + '">' + product + '</option>';
+  productSelect.value = product;
+
+  document.querySelectorAll(".item").forEach(item => {
+    item.classList.remove("selected");
+  });
+
+  button.parentElement.classList.add("selected");
+}
+
+function sendOrder(){
+  const product = selectedProduct || document.getElementById("product").value;
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const city = document.getElementById("city").value.trim();
+  const post = document.getElementById("post").value.trim();
+
+  if(!product){
+    alert("Оберіть товар");
+    return;
+  }
+
+  if(!name){
+    alert("Введіть ім'я");
+    return;
+  }
+
+  if(!phone){
+    alert("Введіть телефон");
+    return;
+  }
+
+  if(!city){
+    alert("Введіть місто НП");
+    return;
+  }
+
+  if(!post){
+    alert("Введіть відділення НП");
+    return;
+  }
+
+  const text =
+`🔥 НОВЕ ЗАМОВЛЕННЯ
+
+🕯 Товар: ${product}
+👤 Ім'я: ${name}
+📞 Телефон: ${phone}
+🏙 Місто НП: ${city}
+📦 Відділення НП: ${post}`;
+
+  fetch("https://api.telegram.org/bot8702255517:AAHdzzS7_nOaNBKathOolHZO0bG7b8d7uOw/sendMessage", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: "8629717657",
+      text: text
+    })
+  })
+  .then(() => {
+    alert("Заявка відправлена");
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("city").value = "";
+    document.getElementById("post").value = "";
+  })
+  .catch(() => {
+    alert("Помилка відправки");
+  });
+}
+</script>
 
 </body>
 </html>
