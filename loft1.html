@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Loft</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<a href="index.html" style="opacity:0.6;">← Назад</a>
+
+<h2> Loft</h2>
+
+<div class="grid">
+
+<div class="card glass">
+<p>Товари скоро будуть</p>
+<button onclick="addToCart('Тест',0)">Тест кнопки</button>
+</div>
+
+</div>
+
+<div class="cart glass">
+
+<div id="cartItems"></div>
+
+<input id="name" placeholder="Ім'я">
+<input id="phone" placeholder="Телефон">
+
+<button onclick="sendOrder()">Замовити</button>
+
+</div>
+
+<script>
+<script>
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function addToCart(name, price){
+cart.push({name, price});
+localStorage.setItem('cart', JSON.stringify(cart));
+renderCart();
+}
+
+function renderCart(){
+let html='';
+cart.forEach(i=>{
+html += `${i.name} - ${i.price} грн<br>`;
+});
+document.getElementById('cartItems').innerHTML = html;
+}
+
+function sendOrder(){
+let name=document.getElementById('name').value;
+let phone=document.getElementById('phone').value;
+
+let text="🛒 Замовлення:\n\n";
+
+cart.forEach(i=>{
+text += i.name+" - "+i.price+" грн\n";
+});
+
+text+="\nІм'я: "+name;
+text+="\nТелефон: "+phone;
+
+fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:"862977657",
+text:text
+})
+});
+
+alert("Замовлення відправлено");
+cart=[];
+localStorage.removeItem('cart');
+renderCart();
+}
+
+window.onload = renderCart;
+</script>
+</script>
+
+</body>
+</html>
