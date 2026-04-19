@@ -8,25 +8,24 @@
 <style>
 body{
 margin:0;
-font-family:-apple-system;
 background:#000;
 color:#fff;
+font-family:Arial;
 }
 
-/* header */
 h1{
 padding:20px;
+margin:0;
 }
 
-/* баннер */
 .banner{
 height:200px;
-background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
-border-radius:20px;
 margin:0 16px;
+border-radius:20px;
+background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
 }
 
-/* сетка */
+/* категории */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -34,29 +33,42 @@ gap:16px;
 padding:16px;
 }
 
-/* карточка */
 .card{
-background:rgba(255,255,255,0.06);
-backdrop-filter:blur(25px);
+display:block;
+text-decoration:none;
+color:#fff;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(20px);
 border-radius:20px;
-padding:12px;
+overflow:hidden;
 }
 
 .card img{
 width:100%;
 height:120px;
 object-fit:cover;
-border-radius:12px;
 }
 
-/* кнопка добавить */
-.add{
-margin-top:10px;
+.card div{
 padding:10px;
-background:#fff;
-color:#000;
-border-radius:10px;
-text-align:center;
+}
+
+/* товары */
+.products{
+padding:16px;
+}
+
+.product{
+background:#111;
+padding:10px;
+border-radius:16px;
+margin-bottom:10px;
+}
+
+.product button{
+width:100%;
+padding:10px;
+margin-top:6px;
 }
 
 /* кнопка корзины */
@@ -64,76 +76,38 @@ text-align:center;
 position:fixed;
 top:20px;
 right:16px;
-width:55px;
-height:55px;
+width:50px;
+height:50px;
+background:#222;
 border-radius:50%;
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(20px);
 display:flex;
 align-items:center;
 justify-content:center;
-z-index:999;
-}
-
-/* overlay */
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-opacity:0;
-pointer-events:none;
-transition:0.3s;
-z-index:997;
-}
-
-.overlay.active{
-opacity:1;
-pointer-events:auto;
+z-index:1000;
+cursor:pointer;
 }
 
 /* корзина */
 .cart{
 position:fixed;
-left:0;
-bottom:-100%;
-width:100%;
+right:-100%;
+top:0;
+width:85%;
+height:100%;
 background:#111;
-padding:20px;
-border-top-left-radius:20px;
-border-top-right-radius:20px;
-transition:0.4s;
-z-index:998;
-max-height:80vh;
-overflow:auto;
+transition:0.3s;
+padding:16px;
+z-index:999;
 }
 
 .cart.active{
-bottom:0;
-}
-
-.cart-item{
-display:flex;
-justify-content:space-between;
-margin:10px 0;
+right:0;
 }
 
 input{
 width:100%;
-padding:12px;
-margin:6px 0;
-border-radius:10px;
-border:none;
-}
-
-button{
-width:100%;
-padding:14px;
-margin-top:10px;
-border:none;
-border-radius:10px;
+padding:10px;
+margin-top:8px;
 }
 </style>
 </head>
@@ -144,112 +118,84 @@ border-radius:10px;
 
 <div class="banner"></div>
 
+<!-- категории -->
 <div class="grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1602524810801-61f3954ed7be">
-<div>Лофт</div>
-<div class="add" onclick="addToCart('Лофт')">Додати</div>
+<a class="card" href="#"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"><div>Loft</div></a>
+<a class="card" href="#"><img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92"><div>Classic</div></a>
+<a class="card" href="#"><img src="https://images.unsplash.com/photo-1541782814456-9d4bcbf3d0c7"><div>Десертні</div></a>
+<a class="card" href="#"><img src="https://images.unsplash.com/photo-1602526217077-9c3fdfc0a1e4"><div>Кашпо</div></a>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
-<div>Класик</div>
-<div class="add" onclick="addToCart('Класик')">Додати</div>
+<!-- ТОВАРЫ (пример) -->
+<div class="products">
+
+<div class="product">
+<div>Свічка Loft</div>
+<button onclick="add('Свічка Loft')">Додати</button>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
-<div>Десерт</div>
-<div class="add" onclick="addToCart('Десерт')">Додати</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
-<div>Кашпо</div>
-<div class="add" onclick="addToCart('Кашпо')">Додати</div>
+<div class="product">
+<div>Свічка Classic</div>
+<button onclick="add('Свічка Classic')">Додати</button>
 </div>
 
 </div>
 
-<div class="overlay" onclick="toggleCart()"></div>
+<!-- кнопка -->
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-<div class="cart">
-<h3>Кошик</h3>
+<!-- корзина -->
+<div class="cart" id="cart">
 
-<div id="cart-list"></div>
+<h2>Кошик</h2>
+
+<div id="list"></div>
 
 <input id="name" placeholder="Ім'я">
 <input id="phone" placeholder="Телефон">
 
 <button onclick="order()">Замовити</button>
-<button onclick="clearCart()">Очистити</button>
+
 </div>
 
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
-
 <script>
+
 let cart = [];
 
-function addToCart(name){
-cart.push(name);
-renderCart();
-}
-
-function renderCart(){
-let list = document.getElementById("cart-list");
-list.innerHTML = "";
-
-cart.forEach((item, index)=>{
-list.innerHTML += `
-<div class="cart-item">
-${item}
-<span onclick="removeItem(${index})">❌</span>
-</div>`;
-});
-}
-
-function removeItem(i){
-cart.splice(i,1);
-renderCart();
-}
-
-function clearCart(){
-cart = [];
-renderCart();
-}
-
 function toggleCart(){
-document.querySelector('.cart').classList.toggle('active');
-document.querySelector('.overlay').classList.toggle('active');
+document.getElementById('cart').classList.toggle('active');
+}
+
+function add(name){
+cart.push(name);
+render();
+}
+
+function render(){
+let list = document.getElementById('list');
+
+if(cart.length === 0){
+list.innerHTML = "Порожньо";
+return;
+}
+
+list.innerHTML = cart.map(i => "<div>"+i+"</div>").join("");
 }
 
 function order(){
-let name = document.getElementById("name").value;
-let phone = document.getElementById("phone").value;
+
+let name = document.getElementById('name').value;
+let phone = document.getElementById('phone').value;
 
 if(!name || !phone){
 alert("Заповни дані");
 return;
 }
 
-if(cart.length === 0){
-alert("Кошик порожній");
-return;
-}
+let text = "Замовлення:\n" + cart.join(", ") + "\nІм'я: " + name + "\nТелефон: " + phone;
 
-let text = "НОВЕ ЗАМОВЛЕННЯ\n\n";
-
-cart.forEach(item=>{
-text += "- " + item + "\n";
-});
-
-text += "\nІм'я: " + name;
-text += "\nТелефон: " + phone;
-
-fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage", {
+fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage",{
 method:"POST",
-mode:"no-cors",
 headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
 chat_id:"862977657",
@@ -257,9 +203,12 @@ text:text
 })
 });
 
-alert("Замовлення відправлено");
-clearCart();
+alert("Відправлено");
+cart = [];
+render();
+
 }
+
 </script>
 
 </body>
