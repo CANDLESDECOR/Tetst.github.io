@@ -195,52 +195,27 @@ button{
 </div>
 
 <script>
-let cart = [];
-
-function toggleCart(){
-  document.querySelector('.cart').classList.toggle('active');
-}
-
-function addToCart(name){
-  cart.push(name);
-  updateCart();
-}
-
-function updateCart(){
-  document.getElementById("cart-items").innerText =
-    cart.length ? cart.join(", ") : "Кошик порожній";
-}
-
 function order(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
 
-  if(!name || !phone){
-    alert("Заповни дані");
-    return;
-  }
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
 
-  let text = "НОВЕ ЗАМОВЛЕННЯ\n\n";
-  text += "Ім'я: " + name + "\n";
-  text += "Телефон: " + phone + "\n";
-  text += "Товари: " + (cart.length ? cart.join(", ") : "немає");
+if(!name || !phone){
+alert("Заповни дані");
+return;
+}
 
-  const url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text=" + encodeURIComponent(text);
+let text = `НОВЕ ЗАМОВЛЕННЯ:
+Ім'я: ${name}
+Телефон: ${phone}`;
 
-  fetch(url)
-  .then(res => res.json())
-  .then(data => {
-    if(data.ok){
-      alert("Заявка відправлена 🔥");
-      cart = [];
-      updateCart();
-    }else{
-      alert("Помилка: " + data.description);
-    }
-  })
-  .catch(()=>{
-    alert("Помилка мережі");
-  });
+// ТВОЙ API
+let url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text=" + encodeURIComponent(text);
+
+// ОТПРАВКА
+window.open(url, "_blank");
+
+alert("Заявка відправлена 🔥");
 }
 </script>
 
