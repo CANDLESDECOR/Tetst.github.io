@@ -2,174 +2,225 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CANDLES HOME</title>
+<title>Candles Home</title>
 
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    color:#fff;
-    background:
-    radial-gradient(circle at 20% 20%, rgba(255,255,255,0.05), transparent),
-    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.04), transparent),
-    linear-gradient(135deg,#0d0d0d,#1a1a1a);
+background:#0f0f0f;
+color:#fff;
+font-family:sans-serif;
+padding:10px;
 }
 
-.title{
-    text-align:center;
-    font-size:36px;
-    font-weight:900;
-    margin:30px 0;
-    background: linear-gradient(180deg,#fff,#aaa);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+h1{
+margin:10px 0;
 }
 
-.glass{
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(25px);
-    border-radius:25px;
-    border:1px solid rgba(255,255,255,0.1);
-    padding:20px;
-    margin:20px;
+.menu{
+display:flex;
+gap:10px;
+overflow-x:auto;
+margin-bottom:15px;
 }
 
-.slider{
-    display:flex;
-    gap:15px;
-    overflow-x:auto;
+.menu a{
+padding:10px 14px;
+background:#1a1a1a;
+border-radius:10px;
+text-decoration:none;
+color:#fff;
+white-space:nowrap;
 }
 
-.item{
-    min-width:230px;
-    padding:15px;
-    border-radius:20px;
-    background:rgba(255,255,255,0.06);
+.main-img{
+width:100%;
+border-radius:16px;
 }
 
-.item img{
-    width:100%;
-    height:180px;
-    object-fit:cover;
-    border-radius:15px;
-    margin-bottom:10px;
+.card{
+background:#1a1a1a;
+padding:10px;
+border-radius:14px;
+margin-bottom:10px;
 }
 
-.item.selected{
-    box-shadow:0 0 25px rgba(255,255,255,0.4);
+.card img{
+width:100%;
+border-radius:10px;
 }
 
-.btn{
-    display:block;
-    text-align:center;
-    padding:12px;
-    border-radius:20px;
-    margin-top:10px;
-    background:rgba(255,255,255,0.1);
+.price{
+margin:5px 0;
+font-weight:bold;
 }
 
-input, select{
-    width:100%;
-    padding:14px;
-    margin:10px 0;
-    border:none;
-    border-radius:15px;
-    background:rgba(255,255,255,0.1);
-    color:#fff;
+button{
+width:100%;
+padding:10px;
+border:none;
+border-radius:12px;
+background:#333;
+color:#fff;
+}
+
+.cart-btn{
+margin:10px 0;
+padding:12px;
+background:#222;
+border-radius:12px;
+text-align:center;
+}
+
+input{
+width:100%;
+margin-top:5px;
+padding:10px;
+border-radius:10px;
+border:none;
+}
+
+.order{
+margin-top:10px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="title">CANDLES HOME</div>
+<h1>CANDLES HOME</h1>
 
-<div class="glass">
-<div class="slider">
-
-<div class="item">
-<img src="1.jpeg">
-Коньячный бокал<br>
-<s>400</s> 299 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Коньячный бокал')">Обрати</div>
+<!-- КАТЕГОРИИ -->
+<div class="menu">
+<a href="#classic">🕯 Classic</a>
+<a href="#loft">🪵 Loft</a>
+<a href="#kashpo">🪨 Кашпо</a>
+<a href="#dessert">🍓 Десерт</a>
 </div>
 
-<div class="item">
-<img src="2.jpeg">
-Свічка Кава<br>
-<s>260</s> 159 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Свічка Кава')">Обрати</div>
+<img src="3.jpg" class="main-img">
+
+<!-- КНОПКИ -->
+<div style="margin:14px 0; display:flex; gap:10px;">
+<a href="https://www.instagram.com/candleshome.store/" target="_blank" style="
+flex:1;
+padding:12px;
+text-align:center;
+border-radius:14px;
+background:linear-gradient(45deg,#fd5949,#d6249f,#285AEB);
+color:#fff;
+text-decoration:none;
+">📸 Instagram</a>
+
+<a href="https://t.me/Candles_Home_UA" target="_blank" style="
+flex:1;
+padding:12px;
+text-align:center;
+border-radius:14px;
+background:#1a1a1a;
+color:#fff;
+text-decoration:none;
+">✈️ Telegram</a>
 </div>
 
-<div class="item">
-<img src="3.jpeg">
-Десерт<br>
-<s>320</s> 219 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Десерт')">Обрати</div>
+<!-- ===== CLASSIC ===== -->
+<h2 id="classic">🕯 Classic</h2>
+
+<div class="card">
+<img src="classic1.jpg">
+<h3>Класична свічка</h3>
+<div class="price">149 грн</div>
+<button onclick="addToCart('Класична свічка',149)">В кошик</button>
 </div>
 
-<div class="item">
-<img src="4.jpeg">
-Свічка в кашпо<br>
-<s>260</s> 159 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Свічка в кашпо')">Обрати</div>
+<!-- ===== LOFT ===== -->
+<h2 id="loft">🪵 Loft</h2>
+
+<div class="card">
+<img src="loft1.jpg">
+<h3>Бетонна свічка</h3>
+<div class="price">199 грн</div>
+<button onclick="addToCart('Бетонна свічка',199)">В кошик</button>
 </div>
 
-<div class="item">
-<img src="5.jpeg">
-Кашпо + свічки<br>
-<s>250</s> 149 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Кашпо + свічки')">Обрати</div>
+<!-- ===== КАШПО ===== -->
+<h2 id="kashpo">🪨 Кашпо</h2>
+
+<div class="card">
+<img src="kashpo1.jpg">
+<h3>Свічка в кашпо</h3>
+<div class="price">150 грн</div>
+<button onclick="addToCart('Свічка в кашпо',150)">В кошик</button>
 </div>
 
-<div class="item">
-<img src="6.jpeg">
-Бокал Шампань<br>
-<s>300</s> 199 грн 🔥
-<div class="btn" onclick="selectProduct(this,'Бокал Шампань')">Обрати</div>
+<!-- ===== ДЕСЕРТ ===== -->
+<h2 id="dessert">🍓 Десерт</h2>
+
+<div class="card">
+<img src="3.jpg">
+<h3>Десерт</h3>
+<div class="price">219 грн</div>
+<button onclick="addToCart('Десерт',219)">В кошик</button>
 </div>
 
-</div>
-</div>
+<!-- КОРЗИНА -->
+<div class="cart-btn" onclick="openCart()">🛒 Відкрити кошик</div>
 
-<div class="glass">
-<h2>Оформлення замовлення</h2>
+<div id="cartBox" style="display:none;">
 
-<select id="product">
-<option value="">Оберіть товар</option>
-</select>
+<div id="cartItems"></div>
 
-<input id="name" placeholder="Ваше ім’я">
+<input id="name" placeholder="Ім'я">
 <input id="phone" placeholder="Телефон">
-<input id="city" placeholder="Місто НП">
-<input id="post" placeholder="Відділення НП">
 
-<div class="btn" onclick="sendOrder()">Замовити</div>
+<button class="order" onclick="sendOrder()">Замовити</button>
+
 </div>
 
 <script>
-let selectedProduct="";
+let cart = [];
 
-function selectProduct(btn,product){
-selectedProduct=product;
-document.getElementById("product").innerHTML =
-"<option>"+product+"</option>";
+function addToCart(name, price){
+  cart.push({name, price});
+  alert('Додано');
+}
 
-document.querySelectorAll(".item").forEach(i=>i.classList.remove("selected"));
-btn.parentElement.classList.add("selected");
+function openCart(){
+  let box = document.getElementById('cartBox');
+  box.style.display = 'block';
+
+  let html = '';
+  cart.forEach(i=>{
+    html += `<div>${i.name} - ${i.price} грн</div>`;
+  });
+
+  document.getElementById('cartItems').innerHTML = html;
 }
 
 function sendOrder(){
-fetch("https://api.telegram.org/botТВОЙ_ТОКЕН/sendMessage",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-chat_id:"ТВОЙ_CHAT_ID",
-text:"Замовлення: "+selectedProduct
-})
-});
-alert("Заявка відправлена");
+
+  const name = document.getElementById('name').value;
+  const phone = document.getElementById('phone').value;
+
+  let text = "🛒 Нове замовлення:\n\n";
+
+  cart.forEach(item=>{
+    text += `${item.name} - ${item.price} грн\n`;
+  });
+
+  text += `\n👤 Ім'я: ${name}`;
+  text += `\n📞 Телефон: ${phone}`;
+
+  fetch(`https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage`, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      chat_id: "862977657",
+      text: text
+    })
+  });
+
+  alert("Замовлення відправлено 🚀");
+  cart = [];
 }
 </script>
 
