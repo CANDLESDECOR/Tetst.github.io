@@ -137,8 +137,11 @@ font-weight:600;
 </div>
 
 <script>
-function order(){
+function toggleCart(){
+document.querySelector('.cart').classList.toggle('active');
+}
 
+function order(){
 let name = document.getElementById("name").value;
 let phone = document.getElementById("phone").value;
 
@@ -147,17 +150,20 @@ alert("Заповни дані");
 return;
 }
 
-let text = "НОВЕ ЗАМОВЛЕННЯ\n\nІм'я: "+name+"\nТелефон: "+phone;
+let text = "НОВЕ ЗАМОВЛЕННЯ\nІм'я: " + name + "\nТелефон: " + phone;
 
-fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({
-chat_id:"862977657",
-text:text
+fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage", {
+method: "POST",
+headers: {
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+chat_id: "862977657",
+text: text
 })
-})
-.then(()=>alert("Відправлено"));
+}).then(() => {
+alert("Відправлено");
+});
 }
 </script>
 <div class="cart-btn" onclick="toggleCart()">🛒</div>
