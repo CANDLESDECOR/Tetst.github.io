@@ -1,675 +1,217 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CANDLES HOME</title>
-  <style>
-    :root{
-      --bg:#060606;
-      --panel:rgba(255,255,255,0.07);
-      --panel-2:rgba(255,255,255,0.05);
-      --stroke:rgba(255,255,255,0.10);
-      --text:#ffffff;
-      --muted:#b9b9c0;
-      --shadow:0 14px 40px rgba(0,0,0,.45);
-      --radius:24px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANDLES HOME</title>
 
-    *{box-sizing:border-box}
-    html,body{margin:0}
-    body{
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-      background:
-        radial-gradient(900px 500px at 20% -10%, rgba(255,175,90,.10), transparent 50%),
-        radial-gradient(800px 500px at 100% 0%, rgba(255,255,255,.06), transparent 40%),
-        linear-gradient(180deg,#090909 0%, #050505 100%);
-      color:var(--text);
-    }
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont;
+  background:#000;
+  color:#fff;
+}
 
-    a{text-decoration:none;color:inherit}
+/* HEADER */
+h1{
+  padding:20px;
+  font-size:28px;
+}
 
-    .container{
-      max-width:980px;
-      margin:0 auto;
-      padding:18px 16px 40px;
-    }
+/* БАННЕР */
+.banner{
+  height:180px;
+  margin:0 16px;
+  border-radius:24px;
+  background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
+  position:relative;
+  overflow:hidden;
+}
 
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:18px;
-    }
+.banner::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.4);
+  backdrop-filter:blur(8px);
+}
 
-    .brand{
-      font-size:28px;
-      line-height:1;
-      font-weight:800;
-      letter-spacing:-0.03em;
-      margin:0;
-    }
+/* БАННЕР СЛАЙДЫ */
+.banners{
+  display:flex;
+  gap:12px;
+  padding:16px;
+  overflow:auto;
+}
 
-    .cart-btn{
-      position:fixed;
-      top:18px;
-      right:16px;
-      width:58px;
-      height:58px;
-      border:none;
-      border-radius:50%;
-      cursor:pointer;
-      color:#fff;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.18), rgba(255,255,255,.05));
-      backdrop-filter:blur(26px);
-      -webkit-backdrop-filter:blur(26px);
-      border:1px solid rgba(255,255,255,.14);
-      box-shadow:
-        0 14px 34px rgba(0,0,0,.45),
-        inset 0 1px 0 rgba(255,255,255,.18),
-        inset 0 -1px 0 rgba(255,255,255,.04);
-      z-index:1002;
-    }
+.slide{
+  min-width:220px;
+  height:100px;
+  border-radius:20px;
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:600;
+}
 
-    .cart-badge{
-      position:absolute;
-      top:-2px;
-      right:-2px;
-      min-width:22px;
-      height:22px;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:0 6px;
-      font-size:12px;
-      font-weight:700;
-      color:#000;
-      background:#fff;
-      box-shadow:0 8px 20px rgba(255,255,255,.18);
-    }
+/* КАТЕГОРИИ */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+  padding:16px;
+}
 
-    .hero{
-      position:relative;
-      min-height:240px;
-      border-radius:30px;
-      overflow:hidden;
-      padding:22px;
-      background:
-        radial-gradient(500px 240px at 75% 35%, rgba(255,190,120,.38), transparent 50%),
-        radial-gradient(360px 200px at 32% 28%, rgba(255,255,255,.12), transparent 46%),
-        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      border:1px solid var(--stroke);
-      box-shadow:var(--shadow);
-      backdrop-filter:blur(26px);
-      -webkit-backdrop-filter:blur(26px);
-      margin-bottom:18px;
-    }
+.card{
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(30px);
+  border-radius:22px;
+  overflow:hidden;
+}
 
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 68% 45%, rgba(255,245,220,.55) 0 10%, transparent 12%),
-        radial-gradient(circle at 68% 45%, rgba(255,190,120,.25) 0 22%, transparent 28%),
-        radial-gradient(circle at 23% 56%, rgba(255,255,255,.13) 0 12%, transparent 16%);
-      pointer-events:none;
-      filter:blur(2px);
-    }
+.card img{
+  width:100%;
+  height:120px;
+  object-fit:cover;
+}
 
-    .hero-inner{
-      position:relative;
-      z-index:1;
-      max-width:460px;
-    }
+.card div{
+  padding:12px;
+  font-size:16px;
+}
 
-    .eyebrow{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      font-size:12px;
-      color:#e5e5ea;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.09);
-      border-radius:999px;
-      padding:8px 12px;
-      margin-bottom:12px;
-    }
+/* КНОПКА КОРЗИНЫ */
+.cart-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(25px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:20px;
+  z-index:999;
+}
 
-    .hero-title{
-      margin:0 0 8px;
-      font-size:34px;
-      line-height:1.02;
-      letter-spacing:-0.04em;
-      font-weight:800;
-    }
+/* КОРЗИНА */
+.cart{
+  position:fixed;
+  right:-100%;
+  top:0;
+  width:80%;
+  height:100%;
+  background:rgba(0,0,0,0.95);
+  backdrop-filter:blur(25px);
+  transition:0.4s;
+  padding:20px;
+  z-index:1000;
+}
 
-    .hero-text{
-      margin:0;
-      max-width:380px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.45;
-    }
+.cart.active{
+  right:0;
+}
 
-    .hero-actions{
-      display:flex;
-      gap:10px;
-      margin-top:16px;
-      flex-wrap:wrap;
-    }
+.cart h3{
+  margin-top:0;
+}
 
-    .glass-btn{
-      border:none;
-      cursor:pointer;
-      border-radius:16px;
-      padding:13px 16px;
-      font-weight:700;
-      font-size:15px;
-      color:#fff;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.16), rgba(255,255,255,.05));
-      border:1px solid rgba(255,255,255,.12);
-      backdrop-filter:blur(20px);
-      -webkit-backdrop-filter:blur(20px);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,.38),
-        inset 0 1px 0 rgba(255,255,255,.18);
-    }
+input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:12px;
+  border:none;
+}
 
-    .glass-btn.primary{
-      color:#000;
-      background:#fff;
-      box-shadow:0 12px 28px rgba(255,255,255,.14);
-    }
-
-    .section-title{
-      margin:22px 0 12px;
-      font-size:18px;
-      font-weight:700;
-      letter-spacing:-0.02em;
-    }
-
-    .categories{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-      margin-bottom:6px;
-    }
-
-    .card{
-      position:relative;
-      display:block;
-      border-radius:24px;
-      overflow:hidden;
-      min-height:168px;
-      padding:16px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:
-        0 12px 34px rgba(0,0,0,.42),
-        inset 0 1px 0 rgba(255,255,255,.12);
-      backdrop-filter:blur(24px);
-      -webkit-backdrop-filter:blur(24px);
-    }
-
-    .card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(180px 100px at 20% 15%, rgba(255,255,255,.14), transparent 60%),
-        radial-gradient(220px 120px at 80% 80%, rgba(255,255,255,.05), transparent 55%);
-      pointer-events:none;
-    }
-
-    .card-art{
-      width:100%;
-      height:96px;
-      border-radius:18px;
-      margin-bottom:14px;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.10);
-    }
-
-    .art-loft{
-      background:
-        linear-gradient(180deg, rgba(60,64,72,.6), rgba(26,26,30,.9)),
-        linear-gradient(135deg,#7a736a,#3f403f);
-      position:relative;
-    }
-    .art-loft::after{
-      content:"";
-      position:absolute;
-      width:56px;height:56px;
-      right:16px;bottom:14px;
-      background:linear-gradient(145deg,#b8a27b,#6f5a3d);
-      border-radius:14px;
-      box-shadow:0 14px 26px rgba(0,0,0,.35);
-    }
-
-    .art-classic{
-      background:
-        radial-gradient(circle at 55% 45%, rgba(255,223,170,.55), transparent 16%),
-        linear-gradient(180deg,#34251b,#151212);
-      position:relative;
-    }
-    .art-classic::after{
-      content:"";
-      position:absolute;
-      left:50%;top:50%;
-      width:64px;height:64px;
-      transform:translate(-50%,-50%);
-      border-radius:50%;
-      background:linear-gradient(180deg,#f5e6cf,#d2b58a);
-      box-shadow:0 10px 24px rgba(0,0,0,.35);
-    }
-
-    .art-dessert{
-      background:
-        linear-gradient(180deg,#4a2431,#1a1114);
-      position:relative;
-    }
-    .art-dessert::after{
-      content:"";
-      position:absolute;
-      left:18px;bottom:14px;
-      width:74px;height:46px;
-      border-radius:18px;
-      background:linear-gradient(180deg,#f5c6cf,#c84d6d);
-      box-shadow:0 10px 24px rgba(0,0,0,.32);
-    }
-
-    .art-kashpo{
-      background:
-        linear-gradient(180deg,#3f3327,#161311);
-      position:relative;
-    }
-    .art-kashpo::after{
-      content:"";
-      position:absolute;
-      right:16px;bottom:12px;
-      width:62px;height:62px;
-      border-radius:16px;
-      background:linear-gradient(145deg,#9a8264,#5e4b35);
-      box-shadow:0 10px 22px rgba(0,0,0,.35);
-    }
-
-    .card-title{
-      position:relative;
-      z-index:1;
-      font-size:18px;
-      font-weight:700;
-      letter-spacing:-0.02em;
-    }
-
-    .products{
-      display:grid;
-      gap:12px;
-      margin-top:8px;
-    }
-
-    .product{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:12px;
-      align-items:center;
-      padding:14px;
-      border-radius:22px;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(255,255,255,.09);
-      box-shadow:
-        0 12px 28px rgba(0,0,0,.38),
-        inset 0 1px 0 rgba(255,255,255,.10);
-      backdrop-filter:blur(18px);
-      -webkit-backdrop-filter:blur(18px);
-    }
-
-    .product-info strong{
-      display:block;
-      font-size:16px;
-      margin-bottom:4px;
-    }
-
-    .product-info span{
-      display:block;
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.35;
-    }
-
-    .add-btn{
-      min-width:110px;
-      height:44px;
-      border:none;
-      cursor:pointer;
-      border-radius:14px;
-      font-weight:700;
-      color:#000;
-      background:#fff;
-      box-shadow:0 10px 24px rgba(255,255,255,.12);
-    }
-
-    .overlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.56);
-      backdrop-filter:blur(4px);
-      -webkit-backdrop-filter:blur(4px);
-      opacity:0;
-      pointer-events:none;
-      transition:.22s ease;
-      z-index:1000;
-    }
-
-    .overlay.active{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    .cart{
-      position:fixed;
-      top:0;
-      right:-420px;
-      width:min(92vw, 390px);
-      height:100vh;
-      padding:18px 16px 24px;
-      background:
-        linear-gradient(180deg, rgba(18,18,20,.96), rgba(10,10,12,.98));
-      border-left:1px solid rgba(255,255,255,.08);
-      box-shadow:-18px 0 40px rgba(0,0,0,.45);
-      backdrop-filter:blur(30px);
-      -webkit-backdrop-filter:blur(30px);
-      transition:right .28s ease;
-      z-index:1001;
-      overflow:auto;
-    }
-
-    .cart.active{
-      right:0;
-    }
-
-    .cart-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      margin:2px 0 18px;
-    }
-
-    .cart-head h2{
-      margin:0;
-      font-size:24px;
-      letter-spacing:-0.03em;
-    }
-
-    .close-btn{
-      width:38px;
-      height:38px;
-      border:none;
-      border-radius:12px;
-      cursor:pointer;
-      color:#fff;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    #list{
-      display:grid;
-      gap:10px;
-      margin-bottom:14px;
-    }
-
-    .cart-item{
-      display:grid;
-      grid-template-columns:1fr auto;
-      gap:10px;
-      align-items:center;
-      padding:12px 12px;
-      border-radius:16px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.06);
-    }
-
-    .cart-item-name{
-      font-size:14px;
-      font-weight:600;
-    }
-
-    .remove-btn{
-      border:none;
-      cursor:pointer;
-      border-radius:10px;
-      padding:8px 10px;
-      color:#fff;
-      background:rgba(255,255,255,.08);
-    }
-
-    .empty{
-      color:var(--muted);
-      font-size:14px;
-      padding:10px 0 4px;
-    }
-
-    .form-title{
-      margin:14px 0 8px;
-      font-size:15px;
-      color:#e8e8ee;
-      font-weight:700;
-    }
-
-    .input{
-      width:100%;
-      height:50px;
-      padding:0 14px;
-      margin:0 0 10px;
-      border:none;
-      outline:none;
-      color:#fff;
-      background:rgba(255,255,255,.07);
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:16px;
-    }
-
-    .actions{
-      display:grid;
-      gap:10px;
-      margin-top:8px;
-    }
-
-    .submit-btn,
-    .clear-btn{
-      height:50px;
-      border:none;
-      cursor:pointer;
-      border-radius:16px;
-      font-weight:700;
-      font-size:15px;
-    }
-
-    .submit-btn{
-      background:#fff;
-      color:#000;
-    }
-
-    .clear-btn{
-      background:rgba(255,255,255,.08);
-      color:#fff;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .hint{
-      margin-top:10px;
-      color:var(--muted);
-      font-size:12px;
-      line-height:1.45;
-    }
-
-    @media (max-width:640px){
-      .brand{font-size:26px}
-      .hero-title{font-size:30px}
-      .categories{gap:12px}
-      .card{min-height:154px}
-      .card-art{height:88px}
-      .product{grid-template-columns:1fr}
-      .add-btn{width:100%}
-    }
-  </style>
+button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:none;
+  border-radius:14px;
+  font-weight:600;
+}
+</style>
 </head>
+
 <body>
-  <button class="cart-btn" onclick="toggleCart()" aria-label="cart">
-    🛒
-    <span class="cart-badge" id="cartCount">0</span>
-  </button>
 
-  <div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<h1>CANDLES HOME</h1>
 
-  <aside class="cart" id="cart">
-    <div class="cart-head">
-      <h2>Кошик</h2>
-      <button class="close-btn" onclick="toggleCart()">✕</button>
-    </div>
+<!-- БАННЕР -->
+<div class="banner"></div>
 
-    <div id="list"></div>
+<!-- СЛАЙДЫ -->
+<div class="banners">
+  <div class="slide">Знижки</div>
+  <div class="slide">Новинки</div>
+  <div class="slide">Хіти</div>
+</div>
 
-    <div class="form-title">Оформлення</div>
-    <input class="input" id="name" placeholder="Ім'я" />
-    <input class="input" id="phone" placeholder="Телефон" />
+<!-- КАТЕГОРИИ -->
+<div class="grid">
 
-    <div class="actions">
-      <button class="submit-btn" onclick="order()">Замовити</button>
-      <button class="clear-btn" onclick="clearCart()">Очистити кошик</button>
-    </div>
+<div class="card" onclick="addToCart('Loft')">
+  <img src="https://images.unsplash.com/photo-1602524815924-7c4b0a7d5f8d">
+  <div>Loft</div>
+</div>
 
-    <div class="hint">
-      Після оформлення замовлення ми зв’яжемося з вами для уточнення деталей.
-    </div>
-  </aside>
+<div class="card" onclick="addToCart('Classic')">
+  <img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
+  <div>Classic</div>
+</div>
 
-  <main class="container">
-    <div class="topbar">
-      <h1 class="brand">CANDLES HOME</h1>
-    </div>
+<div class="card" onclick="addToCart('Десертні')">
+  <img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
+  <div>Десертні</div>
+</div>
 
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="eyebrow">Каталог преміальних свічок</div>
-        <h2 class="hero-title">Головна колекція</h2>
-        <p class="hero-text">
-          Акуратний каталог, чиста подача, зрозумілий вибір категорій та нормальна корзина без зайвого шуму.
-        </p>
-        <div class="hero-actions">
-          <a class="glass-btn primary" href="dessert.html">Відкрити категорію</a>
-          <button class="glass-btn" onclick="toggleCart()">Відкрити кошик</button>
-        </div>
-      </div>
-    </section>
+<div class="card" onclick="addToCart('Кашпо')">
+  <img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
+  <div>Кашпо</div>
+</div>
 
-    <h3 class="section-title">Категорії</h3>
-    <section class="categories">
-      <a class="card" href="loft.html">
-        <div class="card-art art-loft"></div>
-        <div class="card-title">Лофт</div>
-      </a>
+</div>
 
-      <a class="card" href="classic.html">
-        <div class="card-art art-classic"></div>
-        <div class="card-title">Класик</div>
-      </a>
+<!-- КНОПКА -->
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-      <a class="card" href="dessert.html">
-        <div class="card-art art-dessert"></div>
-        <div class="card-title">Десертні</div>
-      </a>
+<!-- КОРЗИНА -->
+<div class="cart">
+  <h3>Кошик</h3>
+  <div id="cart-items">Кошик порожній</div>
 
-      <a class="card" href="kashpo.html">
-        <div class="card-art art-kashpo"></div>
-        <div class="card-title">Свічки в кашпо</div>
-      </a>
-    </section>
+  <input id="name" placeholder="Ім'я">
+  <input id="phone" placeholder="Телефон">
 
-    <h3 class="section-title">Швидке додавання</h3>
-    <section class="products">
-      <div class="product">
-        <div class="product-info">
-          <strong>Loft — базовий товар</strong>
-          <span>Тимчасова позиція для старту. Потім заміниш на свої реальні товари.</span>
-        </div>
-        <button class="add-btn" onclick="add('Loft — базовий товар')">Додати</button>
-      </div>
+  <button onclick="order()">Замовити</button>
+</div>
 
-      <div class="product">
-        <div class="product-info">
-          <strong>Classic — базовий товар</strong>
-          <span>Тимчасова позиція для старту. Потім заміниш на свої реальні товари.</span>
-        </div>
-        <button class="add-btn" onclick="add('Classic — базовий товар')">Додати</button>
-      </div>
+<script>
+let cart = [];
 
-      <div class="product">
-        <div class="product-info">
-          <strong>Dessert — базовий товар</strong>
-          <span>Тимчасова позиція для старту. Потім заміниш на свої реальні товари.</span>
-        </div>
-        <button class="add-btn" onclick="add('Dessert — базовий товар')">Додати</button>
-      </div>
+function toggleCart(){
+  document.querySelector('.cart').classList.toggle('active');
+}
 
-      <div class="product">
-        <div class="product-info">
-          <strong>Kashpo — базовий товар</strong>
-          <span>Тимчасова позиція для старту. Потім заміниш на свої реальні товари.</span>
-        </div>
-        <button class="add-btn" onclick="add('Kashpo — базовий товар')">Додати</button>
-      </div>
-    </section>
-  </main>
+function addToCart(name){
+  cart.push(name);
+  updateCart();
+}
 
-  <script>
-    const TG_TOKEN = "8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE";
-    const TG_CHAT_ID = "862977657";
+function updateCart(){
+  document.getElementById("cart-items").innerText =
+    cart.length ? cart.join(", ") : "Кошик порожній";
+}
 
-    let cart = [];
-
-    function toggleCart(){
-      document.getElementById('cart').classList.toggle('active');
-      document.getElementById('overlay').classList.toggle('active');
-    }
-
-    function updateCart(){
-      const list = document.getElementById('list');
-      const count = document.getElementById('cartCount');
-
-      count.textContent = cart.length;
-
-      if(cart.length === 0){
-        list.innerHTML = '<div class="empty">Кошик порожній</div>';
-        return;
-      }
-
-      list.innerHTML = cart.map((item, index) => `
-        <div class="cart-item">
-          <div class="cart-item-name">${item}</div>
-          <button class="remove-btn" onclick="removeItem(${index})">Видалити</button>
-        </div>
-      `).join('');
-    }
-
-    function add(name){
-      cart.push(name);
-      updateCart();
-    }
-
-    function removeItem(index){
-      cart.splice(index, 1);
-      updateCart();
-    }
-
-    functiofunction order(){
+function order(){
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
 
@@ -678,49 +220,29 @@
     return;
   }
 
-  if(cart.length === 0){
-    alert("Кошик порожній");
-    return;
-  }
-
   let text = "НОВЕ ЗАМОВЛЕННЯ\n\n";
   text += "Ім'я: " + name + "\n";
-  text += "Телефон: " + phone + "\n\n";
-  text += "Товари:\n";
+  text += "Телефон: " + phone + "\n";
+  text += "Товари: " + (cart.length ? cart.join(", ") : "немає");
 
-  cart.forEach(item => {
-    text += "• " + item + "\n";
-  });
-
-  const url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text= + encodeURIComponent(text);
+  const url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text=" + encodeURIComponent(text);
 
   fetch(url)
   .then(res => res.json())
   .then(data => {
     if(data.ok){
-      alert("Дякуємо за замовлення");
+      alert("Заявка відправлена 🔥");
       cart = [];
       updateCart();
     }else{
       alert("Помилка: " + data.description);
     }
   })
-  .catch(() => {
+  .catch(()=>{
     alert("Помилка мережі");
   });
-    }n clearCart(){
-      cart = [];
-      updateCart();
-        document.getElementById('name').value = "";
-        document.getElementById('phone').value = "";
-        toggleCart();
-      })
-      .catch((err) => {
-        alert("Помилка відправки: " + err.message);
-      });
-    }
+}
+</script>
 
-    updateCart();
-  </script>
 </body>
 </html>
