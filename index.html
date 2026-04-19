@@ -3,236 +3,151 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>CANDLES HOME</title>
 
 <style>
 body{
 margin:0;
 font-family:-apple-system;
-background:#050505;
+background:#000;
 color:#fff;
 }
 
 h1{
 padding:20px;
-font-weight:600;
+font-size:28px;
 }
 
-/* 🔥 КАРУСЕЛЬ */
-.slider{
-width:100%;
-overflow:hidden;
-}
-
-.slides{
-display:flex;
-animation:slide 12s infinite;
-}
-
-.slides img{
-width:100%;
-height:260px;
-object-fit:cover;
-}
-
-@keyframes slide{
-0%{transform:translateX(0)}
-25%{transform:translateX(-100%)}
-50%{transform:translateX(-200%)}
-75%{transform:translateX(-300%)}
-100%{transform:translateX(0)}
-}
-
-/* 💎 СТЕКЛО */
-.glass{
-background:rgba(255,255,255,0.06);
-backdrop-filter:blur(25px);
+/* БАННЕР */
+.banner{
+height:220px;
+background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
 border-radius:20px;
-padding:12px;
-margin:14px;
+margin:0 16px;
 }
 
-/* 📦 КАТЕГОРИИ */
+/* СЕТКА */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:12px;
+gap:16px;
+padding:16px;
 }
 
-.cat{
+.card{
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:16px;
 text-align:center;
-padding:18px;
-border-radius:18px;
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(30px);
-cursor:pointer;
-transition:.3s;
+transition:0.2s;
 }
 
-.cat:hover{
-transform:scale(1.05);
+.card:active{
+transform:scale(0.96);
 }
 
-.cat img{
-width:70px;
-height:70px;
+.card img{
+width:100%;
+height:100px;
 object-fit:cover;
-border-radius:14px;
-margin-bottom:8px;
+border-radius:12px;
+margin-bottom:10px;
 }
 
-/* 🛒 КОРЗИНА */
+/* КОРЗИНА */
 .cart{
 position:fixed;
 bottom:0;
-left:0;
-right:0;
-padding:12px;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(30px);
-}
-
-button{
 width:100%;
-padding:12px;
-border:none;
-border-radius:14px;
-background:#fff;
-color:#000;
-margin-top:8px;
-font-weight:600;
+background:rgba(0,0,0,0.85);
+backdrop-filter:blur(20px);
+padding:16px;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
 }
 
 input{
 width:100%;
-padding:10px;
-border:none;
+padding:12px;
+margin:6px 0;
 border-radius:10px;
-margin-top:6px;
+border:none;
 }
 
-/* 📱 ИНСТА */
-.insta{
-margin:14px;
+button{
+width:100%;
 padding:14px;
-text-align:center;
-border-radius:18px;
-background:linear-gradient(45deg,#fd5949,#d6249f,#285AEB);
-color:#fff;
+margin-top:10px;
+border:none;
+border-radius:12px;
 font-weight:600;
 }
 </style>
-
 </head>
 
 <body>
 
 <h1>CANDLES HOME</h1>
 
-<!-- 🔥 БАННЕР КАРУСЕЛЬ -->
-<div class="slider">
-<div class="slides">
-<img src="https://images.unsplash.com/photo-1602874801006-e26e4a0e7a0b">
-<img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3c">
-<img src="https://images.unsplash.com/photo-1616627450151-516c2a1c61f7">
-<img src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f">
-</div>
-</div>
+<div class="banner"></div>
 
-<!-- 📦 КАТЕГОРИИ -->
-<div class="glass">
 <div class="grid">
 
-<div class="cat">
-<img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1602524810953-b1d5b5a3f8b0">
 Лофт
 </div>
 
-<div class="cat">
-<img src="https://images.unsplash.com/photo-1602874801006-e26e4a0e7a0b">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
 Класик
 </div>
 
-<div class="cat">
-<img src="https://images.unsplash.com/photo-1616627450151-516c2a1c61f7">
+<div class="card">
+<img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
 Десерт
 </div>
 
-<div class="cat">
-<img src="https://images.unsplash.com/photo-1587019158091-1a103c5dd17f">
-Кашпо
+<div class="card">
+<img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
+Свічки в кашпо
 </div>
 
 </div>
-</div>
 
-<!-- 📱 INSTAGRAM -->
-<div class="insta" onclick="window.open('https://instagram.com/candleshome.store')">
-Перейти в Instagram
-</div>
-
-<!-- 🛒 КОРЗИНА -->
 <div class="cart">
-
-<div id="cartItems">Кошик порожній</div>
+<div>Кошик порожній</div>
 
 <input id="name" placeholder="Ім'я">
 <input id="phone" placeholder="Телефон">
 
 <button onclick="order()">Швидке замовлення</button>
-
 </div>
-
-<script>
 
 <script>
 function order(){
 
-let name = document.getElementById("name").value.trim();
-let phone = document.getElementById("phone").value.trim();
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
 
 if(!name || !phone){
-alert("Введіть ім'я і телефон");
+alert("Заповни дані");
 return;
 }
 
-let text = "🛒 НОВЕ ЗАМОВЛЕННЯ\n\n";
-text += "Ім'я: " + name + "\n";
-text += "Телефон: " + phone;
+let text = "НОВЕ ЗАМОВЛЕННЯ\n\nІм'я: "+name+"\nТелефон: "+phone;
 
-// ТВОЙ БОТ
-const TOKEN = "8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE";
-const CHAT_ID = "862977657";
-
-fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
+fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage",{
 method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
+headers:{"Content-Type":"application/json"},
 body:JSON.stringify({
-chat_id: CHAT_ID,
-text: text
+chat_id:"862977657",
+text:text
 })
 })
-.then(res=>res.json())
-.then(data=>{
-if(data.ok){
-alert("Замовлення відправлено");
-document.getElementById("name").value="";
-document.getElementById("phone").value="";
-}else{
-alert("Помилка: " + data.description);
+.then(()=>alert("Відправлено"));
 }
-})
-.catch(()=>{
-alert("Помилка відправки");
-});
-
-}
-</script>
-}
-
 </script>
 
 </body>
