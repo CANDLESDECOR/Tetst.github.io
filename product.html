@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+font-family:-apple-system;
+background:#000;
+color:#fff;
+padding:20px;
+}
+
+img{
+width:100%;
+border-radius:20px;
+margin-bottom:15px;
+}
+
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:14px;
+background:#fff;
+color:#000;
+margin-top:10px;
+}
+
+.cart{
+position:fixed;
+bottom:10px;
+left:10px;
+right:10px;
+background:#111;
+padding:10px;
+border-radius:20px;
+}
+</style>
+</head>
+
+<body>
+
+<a href="javascript:history.back()">← Назад</a>
+
+<img id="img">
+
+<h1 id="title"></h1>
+
+<p style="opacity:0.6;">
+Преміальний виріб ручної роботи.
+Мінімалізм, стиль та атмосфера.
+</p>
+
+<button onclick="addToCart()">Додати в кошик</button>
+
+<div class="cart">
+<div id="cartItems"></div>
+<button onclick="clearCart()">Очистити</button>
+</div>
+
+<script>
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+const params=new URLSearchParams(location.search);
+const title=params.get("title");
+
+document.getElementById("title").innerText=title;
+document.getElementById("img").src=params.get("img");
+
+function addToCart(){
+cart.push(title);
+localStorage.setItem("cart",JSON.stringify(cart));
+render();
+}
+
+function render(){
+let html="";
+cart.forEach(i=>html+=i+"<br>");
+document.getElementById("cartItems").innerHTML=html;
+}
+
+function clearCart(){
+cart=[];
+localStorage.removeItem("cart");
+render();
+}
+
+render();
+
+</script>
+
+</body>
+</html>
