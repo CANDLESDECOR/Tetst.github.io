@@ -3,226 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Candles Home</title>
-
-<style>
-body{
-background:#0f0f0f;
-color:#fff;
-font-family:sans-serif;
-padding:10px;
-}
-
-h1{
-margin:10px 0;
-}
-
-.menu{
-display:flex;
-gap:10px;
-overflow-x:auto;
-margin-bottom:15px;
-}
-
-.menu a{
-padding:10px 14px;
-background:#1a1a1a;
-border-radius:10px;
-text-decoration:none;
-color:#fff;
-white-space:nowrap;
-}
-
-.main-img{
-width:100%;
-border-radius:16px;
-}
-
-.card{
-background:#1a1a1a;
-padding:10px;
-border-radius:14px;
-margin-bottom:10px;
-}
-
-.card img{
-width:100%;
-border-radius:10px;
-}
-
-.price{
-margin:5px 0;
-font-weight:bold;
-}
-
-button{
-width:100%;
-padding:10px;
-border:none;
-border-radius:12px;
-background:#333;
-color:#fff;
-}
-
-.cart-btn{
-margin:10px 0;
-padding:12px;
-background:#222;
-border-radius:12px;
-text-align:center;
-}
-
-input{
-width:100%;
-margin-top:5px;
-padding:10px;
-border-radius:10px;
-border:none;
-}
-
-.order{
-margin-top:10px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <h1>CANDLES HOME</h1>
 
-<!-- КАТЕГОРИИ -->
 <div class="menu">
-<a href="#classic">🕯 Classic</a>
-<a href="#loft">🪵 Loft</a>
-<a href="#kashpo">🪨 Кашпо</a>
-<a href="#dessert">🍓 Десерт</a>
+<a href="classic.html" class="glass"> Classic</a>
+<a href="loft.html" class="glass"> Loft</a>
+<a href="kashpo.html" class="glass"> Кашпо</a>
+<a href="dessert.html" class="glass"> Десерт</a>
 </div>
 
-<img src="3.jpg" class="main-img">
-
-<!-- КНОПКИ -->
-<div style="margin:14px 0; display:flex; gap:10px;">
-<a href="https://www.instagram.com/candleshome.store/" target="_blank" style="
-flex:1;
-padding:12px;
-text-align:center;
-border-radius:14px;
-background:linear-gradient(45deg,#fd5949,#d6249f,#285AEB);
-color:#fff;
-text-decoration:none;
-">📸 Instagram</a>
-
-<a href="https://t.me/Candles_Home_UA" target="_blank" style="
-flex:1;
-padding:12px;
-text-align:center;
-border-radius:14px;
-background:#1a1a1a;
-color:#fff;
-text-decoration:none;
-">✈️ Telegram</a>
+<div class="glass" style="padding:20px;text-align:center;">
+<p>Каталог преміальних свічок</p>
+<p style="opacity:0.6;">Оберіть категорію</p>
 </div>
-
-<!-- ===== CLASSIC ===== -->
-<h2 id="classic">🕯 Classic</h2>
-
-<div class="card">
-<img src="classic1.jpg">
-<h3>Класична свічка</h3>
-<div class="price">149 грн</div>
-<button onclick="addToCart('Класична свічка',149)">В кошик</button>
-</div>
-
-<!-- ===== LOFT ===== -->
-<h2 id="loft">🪵 Loft</h2>
-
-<div class="card">
-<img src="loft1.jpg">
-<h3>Бетонна свічка</h3>
-<div class="price">199 грн</div>
-<button onclick="addToCart('Бетонна свічка',199)">В кошик</button>
-</div>
-
-<!-- ===== КАШПО ===== -->
-<h2 id="kashpo">🪨 Кашпо</h2>
-
-<div class="card">
-<img src="kashpo1.jpg">
-<h3>Свічка в кашпо</h3>
-<div class="price">150 грн</div>
-<button onclick="addToCart('Свічка в кашпо',150)">В кошик</button>
-</div>
-
-<!-- ===== ДЕСЕРТ ===== -->
-<h2 id="dessert">🍓 Десерт</h2>
-
-<div class="card">
-<img src="3.jpg">
-<h3>Десерт</h3>
-<div class="price">219 грн</div>
-<button onclick="addToCart('Десерт',219)">В кошик</button>
-</div>
-
-<!-- КОРЗИНА -->
-<div class="cart-btn" onclick="openCart()">🛒 Відкрити кошик</div>
-
-<div id="cartBox" style="display:none;">
-
-<div id="cartItems"></div>
-
-<input id="name" placeholder="Ім'я">
-<input id="phone" placeholder="Телефон">
-
-<button class="order" onclick="sendOrder()">Замовити</button>
-
-</div>
-
-<script>
-let cart = [];
-
-function addToCart(name, price){
-  cart.push({name, price});
-  alert('Додано');
-}
-
-function openCart(){
-  let box = document.getElementById('cartBox');
-  box.style.display = 'block';
-
-  let html = '';
-  cart.forEach(i=>{
-    html += `<div>${i.name} - ${i.price} грн</div>`;
-  });
-
-  document.getElementById('cartItems').innerHTML = html;
-}
-
-function sendOrder(){
-
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
-
-  let text = "🛒 Нове замовлення:\n\n";
-
-  cart.forEach(item=>{
-    text += `${item.name} - ${item.price} грн\n`;
-  });
-
-  text += `\n👤 Ім'я: ${name}`;
-  text += `\n📞 Телефон: ${phone}`;
-
-  fetch(`https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage`, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      chat_id: "862977657",
-      text: text
-    })
-  });
-
-  alert("Замовлення відправлено 🚀");
-  cart = [];
-}
-</script>
 
 </body>
 </html>
