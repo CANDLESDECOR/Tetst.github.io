@@ -20,7 +20,7 @@ font-size:28px;
 
 /* БАННЕР */
 .banner{
-height:220px;
+height:200px;
 background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
 border-radius:20px;
 margin:0 16px;
@@ -38,37 +38,25 @@ padding:16px;
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(20px);
 border-radius:20px;
-padding:16px;
+padding:12px;
 text-align:center;
-transition:0.2s;
-}
-
-.card:active{
-transform:scale(0.96);
 }
 
 .card img{
 width:100%;
-height:100px;
+height:120px;
 object-fit:cover;
 border-radius:12px;
 margin-bottom:10px;
 }
 
-/* КОРЗИНА */
-.cart{
-margin:40px 16px 20px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
-border-radius:20px;
-padding:16px;
-}
+/* КНОПКА КОРЗИНЫ */
 .cart-btn{
 position:fixed;
 right:16px;
 bottom:20px;
-width:55px;
-height:55px;
+width:60px;
+height:60px;
 border-radius:50%;
 background:rgba(255,255,255,0.1);
 backdrop-filter:blur(20px);
@@ -78,6 +66,45 @@ justify-content:center;
 font-size:22px;
 z-index:999;
 }
+
+/* ЗАТЕМНЕНИЕ */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+z-index:997;
+}
+
+.overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* КОРЗИНА */
+.cart{
+position:fixed;
+left:0;
+bottom:-100%;
+width:100%;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(20px);
+padding:20px;
+border-top-left-radius:20px;
+border-top-right-radius:20px;
+transition:0.4s;
+z-index:998;
+}
+
+.cart.active{
+bottom:0;
+}
+
 input{
 width:100%;
 padding:12px;
@@ -106,7 +133,7 @@ font-weight:600;
 <div class="grid">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1602524810953-b1d5b5a3f8b0">
+<img src="https://images.unsplash.com/photo-1602524810801-61f3954ed7be">
 Лофт
 </div>
 
@@ -127,6 +154,10 @@ font-weight:600;
 
 </div>
 
+<!-- затемнение -->
+<div class="overlay" onclick="toggleCart()"></div>
+
+<!-- корзина -->
 <div class="cart">
 <div>Кошик порожній</div>
 
@@ -136,9 +167,13 @@ font-weight:600;
 <button onclick="order()">Швидке замовлення</button>
 </div>
 
+<!-- кнопка -->
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
 <script>
 function toggleCart(){
 document.querySelector('.cart').classList.toggle('active');
+document.querySelector('.overlay').classList.toggle('active');
 }
 
 function order(){
@@ -153,19 +188,15 @@ return;
 let text = "НОВЕ ЗАМОВЛЕННЯ\nІм'я: " + name + "\nТелефон: " + phone;
 
 fetch("https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage", {
-method: "POST",
-headers: {
-"Content-Type": "application/json"
-},
-body: JSON.stringify({
-chat_id: "862977657",
-text: text
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({
+chat_id:"862977657",
+text:text
 })
-}).then(() => {
-alert("Відправлено");
-});
+}).then(()=>alert("Відправлено"));
 }
 </script>
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
 </body>
 </html>
