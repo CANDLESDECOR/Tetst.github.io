@@ -16,9 +16,9 @@ body{
 h1{
   padding:20px;
   margin:0;
-  font-weight:700;
 }
 
+/* кнопка корзины */
 .cart-btn{
   position:fixed;
   top:20px;
@@ -40,22 +40,26 @@ h1{
   overflow:hidden;
   margin:15px;
 }
+
 .slides{
   display:flex;
   gap:10px;
   animation:scroll 20s linear infinite;
 }
+
 .slide{
   min-width:260px;
   height:140px;
   border-radius:20px;
   overflow:hidden;
 }
+
 .slide img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
+
 @keyframes scroll{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
@@ -68,24 +72,74 @@ h1{
   gap:15px;
   padding:15px;
 }
+
 .card{
   position:relative;
-  height:120px;
+  height:140px;
   border-radius:20px;
   overflow:hidden;
+  display:block;
 }
+
 .card img{
   width:100%;
   height:100%;
   object-fit:cover;
 }
+
 .card span{
   position:absolute;
   bottom:10px;
-  left:10px;
+  left:12px;
   color:#fff;
   font-weight:700;
-  text-shadow:0 2px 5px rgba(0,0,0,0.7);
+  text-shadow:0 2px 6px rgba(0,0,0,0.7);
+}
+
+/* КОРЗИНА */
+.cart{
+  position:fixed;
+  right:-100%;
+  top:0;
+  width:90%;
+  height:100%;
+  background:#fff;
+  padding:20px;
+  transition:0.3s;
+  z-index:999;
+}
+
+.cart.active{
+  right:0;
+}
+
+.cart-header{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+#cart-items{
+  margin-bottom:15px;
+}
+
+.total{
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.cart input{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+}
+
+.cart button{
+  width:100%;
+  padding:14px;
+  background:#111;
+  color:#fff;
+  border:none;
 }
 
 .footer{
@@ -100,7 +154,7 @@ h1{
 
 <h1>CANDLES HOME</h1>
 
-<div class="cart-btn">🛒</div>
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
 
 <!-- ПРОМО -->
 <div class="slider">
@@ -140,10 +194,87 @@ h1{
 
 </div>
 
+<!-- КОРЗИНА -->
+<div class="cart" id="cart">
+
+<div class="cart-header">
+<span>Кошик</span>
+<button onclick="toggleCart()">✖</button>
+</div>
+
+<div id="cart-items">Порожньо</div>
+
+<div class="total" id="total">Разом: 0 грн</div>
+
+<input id="name" placeholder="Ім’я">
+<input id="phone" placeholder="Телефон">
+
+<button onclick="order()">Замовити</button>
+
+</div>
+
 <div class="footer">
 Instagram: candleshome.store<br>
 Telegram: Candles_Home_Catalog
 </div>
+
+<script>
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+  renderCart();
+}
+
+function add(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  cart.push({name, price});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Додано");
+}
+
+function renderCart(){
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+  let html = "";
+  let total = 0;
+
+  cart.forEach(item=>{
+    html += `<div>${item.name} - ${item.price} грн</div>`;
+    total += item.price;
+  });
+
+  document.getElementById("cart-items").innerHTML =
+    cart.length ? html : "Порожньо";
+
+  document.getElementById("total").innerText =
+    "Разом: " + total + " грн";
+}
+
+function order(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+  let text = "Замовлення:\n";
+  cart.forEach(i=>{
+    text += i.name + " " + i.price + " грн\n";
+  });
+
+  text += "\n👤 " + name + "\n📞 " + phone;
+
+  fetch("https://api.telegram.org/botXXX/sendMessage", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({
+      chat_id:"ТВОЙ_ID",
+      text:text
+    })
+  });
+
+  alert("Відправлено");
+  localStorage.removeItem("cart");
+}
+</script>
 
 </body>
 </html>
