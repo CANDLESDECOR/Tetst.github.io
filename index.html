@@ -4,22 +4,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANDLES HOME</title>
-
 <style>
 body{
   margin:0;
-  font-family:Arial;
-  color:#fff;
-  background:radial-gradient(circle at top,#4a3b2a,#1a1a1a,#000);
+  font-family:Arial, sans-serif;
+  color:#ffffff;
+  background:#121212;
 }
 
 /* заголовок */
 h1{
   padding:20px;
   margin:0;
+  color:#f1f1f1;
 }
 
-/* баннер */
+/* слайдер */
 .slider{
   overflow:hidden;
   margin:15px;
@@ -34,14 +34,18 @@ h1{
 .slide{
   min-width:260px;
   height:130px;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   border-radius:20px;
 
-  background:linear-gradient(145deg,rgba(255,200,120,0.25),rgba(255,255,255,0.08));
+  background:#2a2a2a;
 
-  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  box-shadow:
+    0 8px 20px rgba(0,0,0,0.6),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
 
 @keyframes scroll{
@@ -49,60 +53,38 @@ h1{
   100%{transform:translateX(-50%);}
 }
 
-/* сетка */
+/* категории */
 .grid{
-body{
-  margin:0;
-  font-family:Arial;
-  color:#fff;
-
-  background:linear-gradient(180deg,#2b2b2b,#111);
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  padding:15px;
 }
 
-/* заголовок */
-h1{
-  padding:20px;
-  margin:0;
-  color:#eaeaea;
-}
-
-/* баннер */
-.slide{
-  min-width:260px;
-  height:130px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:20px;
-
-  background:linear-gradient(145deg,#3a3a3a,#1c1c1c);
-
-  box-shadow:
-    0 8px 25px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-}
-
-/* карточки */
 .card{
   display:flex;
   align-items:center;
   justify-content:center;
 
   height:110px;
+
   border-radius:20px;
 
-  background:linear-gradient(145deg,#3a3a3a,#1c1c1c);
-
-  border:1px solid rgba(255,255,255,0.05);
+  background:#2a2a2a;
+  border:1px solid #3a3a3a;
 
   font-size:18px;
   font-weight:600;
 
   box-shadow:
     0 10px 25px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+    inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+/* ссылки */
+a{
+  text-decoration:none;
+  color:#ffffff;
 }
 
 /* кнопка корзины */
@@ -116,13 +98,16 @@ h1{
 
   border-radius:50%;
 
-  background:linear-gradient(145deg,#3a3a3a,#1c1c1c);
+  background:#2a2a2a;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
   font-size:22px;
+  cursor:pointer;
+
+  box-shadow:0 5px 15px rgba(0,0,0,0.6);
 }
 
 /* корзина */
@@ -136,17 +121,37 @@ h1{
 
   padding:20px;
 
-  background:rgba(25,25,25,0.98);
-  backdrop-filter:blur(15px);
+  background:#1a1a1a;
 
   transition:0.3s;
   z-index:1000;
+
+  display:flex;
+  flex-direction:column;
 }
 
 .cart.active{
   right:0;
 }
 
+/* крестик */
+.close{
+  position:absolute;
+  top:20px;
+  left:20px;
+
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* список */
+#cart-items{
+  text-align:center;
+  color:#aaa;
+  margin-bottom:15px;
+}
+
+/* поля */
 .cart input{
   width:100%;
   padding:14px;
@@ -154,7 +159,7 @@ h1{
 
   border-radius:14px;
 
-  border:1px solid rgba(255,255,255,0.05);
+  border:1px solid #333;
   background:#2a2a2a;
 
   color:#fff;
@@ -168,12 +173,13 @@ h1{
   border:none;
   border-radius:16px;
 
-  background:linear-gradient(145deg,#4a4a4a,#2a2a2a);
+  background:#3a3a3a;
   color:#fff;
 
-  box-shadow:
-    0 8px 20px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.1);
+  font-size:16px;
+  font-weight:600;
+
+  box-shadow:0 6px 15px rgba(0,0,0,0.6);
 }
 
 /* футер */
@@ -181,36 +187,17 @@ h1{
   text-align:center;
   padding:20px;
   color:#aaa;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  padding:15px;
 }
+  .close{
+  position:absolute;
+  top:20px;
+  right:20px;
 
-/* карточки */
-.card{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  height:110px;
-  border-radius:20px;
-
-  background:linear-gradient(145deg,rgba(255,220,150,0.15),rgba(255,255,255,0.05));
-  border:1px solid rgba(255,200,120,0.2);
-
-  font-size:18px;
-  font-weight:600;
-}
-
-/* ссылки */
-a{
-  text-decoration:none;
-  color:#fff;
-
-.cart{
-  position:fixed;
-}
+  font-size:20px;
+  cursor:pointer;
+  }
 </style>
+  
 </head>
 <body>
 
