@@ -4,19 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANDLES HOME</title>
-<style>
+
+ <style>
 body{
   margin:0;
   font-family:Arial, sans-serif;
-  color:#ffffff;
-  background:#121212;
+  color:#111;
+  background:#f5f5f5;
 }
 
 /* заголовок */
 h1{
   padding:20px;
   margin:0;
-  color:#f1f1f1;
+  color:#111;
 }
 
 /* слайдер */
@@ -41,11 +42,12 @@ h1{
 
   border-radius:20px;
 
-  background:#2a2a2a;
+  background:rgba(255,255,255,0.6);
+  backdrop-filter:blur(20px);
 
-  box-shadow:
-    0 8px 20px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+  border:1px solid rgba(0,0,0,0.05);
+
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
 }
 
 @keyframes scroll{
@@ -70,21 +72,21 @@ h1{
 
   border-radius:20px;
 
-  background:#2a2a2a;
-  border:1px solid #3a3a3a;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(0,0,0,0.05);
 
   font-size:18px;
   font-weight:600;
 
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.6),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 /* ссылки */
 a{
   text-decoration:none;
-  color:#ffffff;
+  color:#111;
 }
 
 /* кнопка корзины */
@@ -98,7 +100,8 @@ a{
 
   border-radius:50%;
 
-  background:#2a2a2a;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(20px);
 
   display:flex;
   align-items:center;
@@ -107,7 +110,7 @@ a{
   font-size:22px;
   cursor:pointer;
 
-  box-shadow:0 5px 15px rgba(0,0,0,0.6);
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
 /* корзина */
@@ -121,7 +124,8 @@ a{
 
   padding:20px;
 
-  background:#1a1a1a;
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(25px);
 
   transition:0.3s;
   z-index:1000;
@@ -138,7 +142,7 @@ a{
 .close{
   position:absolute;
   top:20px;
-  left:20px;
+  right:20px;
 
   font-size:22px;
   cursor:pointer;
@@ -147,7 +151,7 @@ a{
 /* список */
 #cart-items{
   text-align:center;
-  color:#aaa;
+  color:#777;
   margin-bottom:15px;
 }
 
@@ -159,10 +163,10 @@ a{
 
   border-radius:14px;
 
-  border:1px solid #333;
-  background:#2a2a2a;
+  border:1px solid #ddd;
+  background:#fff;
 
-  color:#fff;
+  color:#111;
 }
 
 /* кнопка */
@@ -173,20 +177,20 @@ a{
   border:none;
   border-radius:16px;
 
-  background:#3a3a3a;
+  background:#111;
   color:#fff;
 
   font-size:16px;
   font-weight:600;
 
-  box-shadow:0 6px 15px rgba(0,0,0,0.6);
+  box-shadow:0 6px 15px rgba(0,0,0,0.1);
 }
 
 /* футер */
 .footer{
   text-align:center;
   padding:20px;
-  color:#aaa;
+  color:#666;
 }
   .close{
   position:absolute;
