@@ -1,0 +1,119 @@
+body{
+  margin:0;
+  font-family:Arial;
+  background:#f2f2f2;
+  color:#111;
+}
+
+h1{padding:20px;margin:0;}
+
+a{
+  text-decoration:none;
+  color:inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* КАРУСЕЛЬ */
+.slider{overflow:hidden;margin:15px;}
+.slides{display:flex;gap:10px;animation:scroll 20s linear infinite;}
+.slide{min-width:250px;height:140px;border-radius:20px;overflow:hidden;}
+.slide img{width:100%;height:100%;object-fit:cover;}
+@keyframes scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* КАТЕГОРИИ */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  padding:15px;
+}
+
+.card{
+  position:relative;
+  height:140px;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.card img{width:100%;height:100%;object-fit:cover;}
+
+.card span{
+  position:absolute;
+  bottom:10px;
+  left:10px;
+  color:#fff;
+  font-weight:700;
+}
+
+/* ТОВАР */
+.product{
+  background:#fff;
+  margin:15px;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.product img{width:100%;height:180px;object-fit:cover;}
+.info{padding:15px;}
+
+button{
+  width:100%;
+  padding:12px;
+  background:#111;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+}
+
+/* КОРЗИНА */
+.cart-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  width:55px;
+  height:55px;
+  background:#fff;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.cart{
+  position:fixed;
+  right:-100%;
+  top:0;
+  width:90%;
+  height:100%;
+  background:#fff;
+  padding:20px;
+  transition:0.3s;
+  z-index:999;
+  overflow:auto;
+}
+
+.cart.active{ right:0; }
+
+.cart-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+
+.close{
+  background:#111;
+  color:#fff;
+  padding:5px 10px;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
