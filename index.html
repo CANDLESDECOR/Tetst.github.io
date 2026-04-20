@@ -7,508 +7,269 @@
 
 <style>
 body{
-  margin:0;
-  font-family:sans-serif;
-  background:#000;
-  color:#fff;
+margin:0;
+background:#000;
+color:#fff;
+font-family:Arial;
 }
 
+/* заголовок */
 h1{
-  padding:20px;
+padding:20px;
 }
 
+/* баннер */
+.banner{
+height:200px;
+background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
+margin:10px;
+border-radius:20px;
+}
+
+/* сетка */
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  padding:15px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+padding:15px;
 }
 
+/* карточки */
 .card{
-  background:#111;
-  border-radius:20px;
-  padding:20px;
-  text-align:center;
-  cursor:pointer;
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
+border-radius:20px;
+padding:10px;
+text-align:center;
+cursor:pointer;
 }
 
-.card:hover{
-  background:#222;
+.card img{
+width:100%;
+height:100px;
+object-fit:cover;
+border-radius:12px;
 }
 
 /* кнопка корзины */
 .cart-btn{
-  position:fixed;
-  top:20px;
-  right:20px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:#222;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  z-index:1000;
+position:fixed;
+top:20px;
+right:20px;
+width:55px;
+height:55px;
+border-radius:50%;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(25px);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:22px;
+z-index:1000;
+cursor:pointer;
 }
 
 /* overlay */
 .overlay{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-  opacity:0;
-  pointer-events:none;
-  transition:0.3s;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+z-index:998;
 }
 
 .overlay.active{
-  opacity:1;
-  pointer-events:auto;
+opacity:1;
+pointer-events:auto;
 }
 
 /* корзина */
 .cart{
-  position:fixed;
-  right:-100%;
-  top:0;
-  width:80%;
-  height:100%;
-  background:#111;
-  padding:20px;
-  transition:0.3s;
-  z-index:1001;
+position:fixed;
+top:0;
+right:-100%;
+width:80%;
+height:100%;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(25px);
+transition:0.4s;
+padding:20px;
+z-index:999;
+overflow:auto;
 }
 
 .cart.active{
-  right:0;
+right:0;
 }
 
 input{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:10px;
-  border:none;
+width:100%;
+padding:12px;
+margin:5px 0;
+border-radius:10px;
+border:none;
 }
 
 button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:12px;
-  margin-top:10px;
-  font-weight:bold;
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+font-weight:600;
+cursor:pointer;
 }
 </style>
+
 </head>
 
 <body>
 
+<div id="home">
+
 <h1>CANDLES HOME</h1>
 
+<div class="banner"></div>
+
 <div class="grid">
-  <div class="card" onclick="addToCart('Loft')">Loft</div>
-  <div class="card" onclick="addToCart('Classic')">Classic</div>
-  <div class="card" onclick="addToCart('Десертні')">Десертні</div>
-  <div class="card" onclick="addToCart('Кашпо')">Кашпо</div>
+
+<div class="card" onclick="openPage('loft')">
+<img src="https://images.unsplash.com/photo-1602524816722-3a0f6fba9c01">
+<div>Loft</div>
+</div>
+
+<div class="card" onclick="openPage('classic')">
+<img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
+<div>Classic</div>
+</div>
+
+<div class="card" onclick="openPage('dessert')">
+<img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
+<div>Десертні</div>
+</div>
+
+<div class="card" onclick="openPage('kashpo')">
+<img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
+<div>Кашпо</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- страницы -->
+<div id="loft" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Loft</h2>
+<button onclick="addToCart('Loft')">Додати</button>
+</div>
+
+<div id="classic" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Classic</h2>
+<button onclick="addToCart('Classic')">Додати</button>
+</div>
+
+<div id="dessert" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Десертні</h2>
+<button onclick="addToCart('Dessert')">Додати</button>
+</div>
+
+<div id="kashpo" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Кашпо</h2>
+<button onclick="addToCart('Kashpo')">Додати</button>
 </div>
 
 <!-- кнопка -->
 <div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-<!-- затемнение -->
+<!-- overlay -->
 <div class="overlay" onclick="toggleCart()"></div>
 
 <!-- корзина -->
 <div class="cart">
-  <h2>Кошик</h2>
+<h3>Кошик</h3>
+<div id="cart-items">Кошик порожній</div>
 
-  <div id="cart-items">Кошик порожній</div>
+<input id="name" placeholder="Ім'я">
+<input id="phone" placeholder="Телефон">
 
-  <input id="name" placeholder="Ім'я">
-  <input id="phone" placeholder="Телефон">
-
-  <button onclick="order()">Замовити</button>
+<button onclick="order()">Замовити</button>
 </div>
 
 <script>
+
 let cart = [];
 
-function addToCart(item){
-  cart.push(item);
-  updateCart();
+function openPage(page){
+document.getElementById("home").style.display="none";
+["loft","classic","dessert","kashpo"].forEach(i=>{
+document.getElementById(i).style.display="none";
+});
+document.getElementById(page).style.display="block";
 }
 
-function updateCart(){
-  const el = document.getElementById("cart-items");
-
-  if(cart.length === 0){
-    el.innerHTML = "Кошик порожній";
-  }else{
-    el.innerHTML = cart.map(i => "• " + i).join("<br>");
-  }
+function back(){
+document.getElementById("home").style.display="block";
+["loft","classic","dessert","kashpo"].forEach(i=>{
+document.getElementById(i).style.display="none";
+});
 }
 
 function toggleCart(){
-  document.querySelector(".cart").classList.toggle("active");
-  document.querySelector(".overlay").classList.toggle("active");
+document.querySelector(".cart").classList.toggle("active");
+document.querySelector(".overlay").classList.toggle("active");
+}
+
+function addToCart(item){
+cart.push(item);
+document.getElementById("cart-items").innerHTML = cart.join("<br>");
 }
 
 function order(){
 
-  let name = document.getElementById("name").value;<!DOCTYPE html>
-<html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CANDLES HOME</title>
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
 
-<style>
-body{
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #05070b, #0a0f18 55%, #04060a);
-  color:#fff;
-  margin:0;
-  padding:20px;
+if(!name || !phone){
+alert("Заповни дані");
+return;
 }
 
-h2{
-  margin: 0 0 18px 0;
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: .5px;
-}
+let text = "Замовлення:\n"+cart.join(", ")+"\nІм'я:"+name+"\nТел:"+phone;
 
-.slider{
-  display:flex;
-  overflow-x:auto;
-  gap:16px;
-  padding: 6px 2px 10px;
-  scroll-snap-type:x mandatory;
-}
+let url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text="+encodeURIComponent(text);
 
-.slider::-webkit-scrollbar{
-  display:none;
-}
-
-.card{
-  min-width:270px;
-  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:
-    0 20px 45px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.10),
-    inset 0 -1px 0 rgba(255,255,255,.04);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius:26px;
-  padding:14px;
-  scroll-snap-align:center;
-  transition:.25s ease;
-}
-
-.card.active{
-  border:1px solid rgba(180, 220, 255, .45);
-  box-shadow:
-    0 24px 50px rgba(0,0,0,.48),
-    0 0 0 1px rgba(180, 220, 255, .18),
-    inset 0 1px 0 rgba(255,255,255,.12);
-}
-
-.card img{
-  width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border-radius:20px;
-  display:block;
-  margin-bottom:14px;
-  background:#131923;
-}
-
-.card h3{
-  margin:0 0 10px;
-  font-size:22px;
-  line-height:1.1;
-  font-weight:900;
-}
-
-.card p{
-  margin:0 0 12px;
-  color:#c9d1dc;
-  font-size:14px;
-  line-height:1.4;
-  min-height:38px;
-}
-
-.price{
-  font-size:18px;
-  font-weight:800;
-  margin-bottom:12px;
-  color:#f1f5f9;
-}
-
-button{
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:18px;
-  background: linear-gradient(180deg, rgba(255,255,255,.20), rgba(255,255,255,.08));
-  border:1px solid rgba(255,255,255,.16);
-  color:#fff;
-  font-weight:900;
-  font-size:17px;
-  cursor:pointer;
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.12),
-    0 12px 24px rgba(0,0,0,.32);
-}
-
-button:active{
-  transform:scale(.985);
-}
-
-hr{
-  border:none;
-  height:1px;
-  background:rgba(255,255,255,.14);
-  margin:24px 0;
-}
-
-.form-box{
-  background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-  border:1px solid rgba(255,255,255,.16);
-  box-shadow:
-    0 22px 50px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.10);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-radius:28px;
-  padding:16px;
-}
-
-input, select{
-  width:100%;
-  padding:16px;
-  margin:6px 0 12px 0;
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.10);
-  outline:none;
-  box-sizing:border-box;
-  background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(230,235,242,.90));
-  color:#111827;
-  font-size:16px;
-}
-
-select{
-  appearance:none;
-}
-
-.submit-btn{
-  margin-top:4px;
-}
-
-@media (max-width: 430px){
-  h2{
-    font-size:34px;
-  }
-  .card{
-    min-width:250px;
-  }
-}
-</style>
-  <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '2166184887482833');
-fbq('track', 'PageView');
-</script>
-</head>
-
-<body>
-
-<h2>Каталог</h2>
-
-<div class="slider">
-
-  <div class="card">
-    <img src="1.jpg" alt="Коньячний бокал">
-    <h3>Коньячний бокал</h3>
-    <p>Преміальна свічка у стильному бокалі для ефектної подачі.</p>
-    <div class="price">299 грн</div>
-    <button onclick="setProduct('Коньячний бокал', this)">Обрати</button>
-  </div>
-
-  <div class="card">
-    <img src="2.jpg" alt="Кава">
-    <h3>Кава</h3>
-    <p>Атмосферна десертна свічка з теплим кавовим настроєм.</p>
-    <div class="price">159 грн</div>
-    <button onclick="setProduct('Кава', this)">Обрати</button>
-  </div>
-
-  <div class="card">
-    <img src="3.jpg" alt="Десерт">
-    <h3>Десерт</h3>
-    <p>Яскрава декоративна свічка з ефектною солодкою подачею.</p>
-    <div class="price">219 грн</div>
-    <button onclick="setProduct('Десерт', this)">Обрати</button>
-  </div>
-
-  <div class="card">
-    <img src="4.jpg" alt="Свічка в кашпо">
-    <h3>Свічка в кашпо</h3>
-    <p>Стильна свічка в кашпо для сучасного інтерʼєру та подарунка.</p>
-    <div class="price">150 грн</div>
-    <button onclick="setProduct('Свічка в кашпо', this)">Обрати</button>
-  </div>
-
-  <div class="card">
-    <img src="5.jpg" alt="Кашпо під чайні свічки">
-    <h3>Кашпо під чайні свічки</h3>
-    <p>Лаконічний декор для затишної атмосфери вдома.</p>
-    <div class="price">120 грн</div>
-    <button onclick="setProduct('Кашпо під чайні свічки', this)">Обрати</button>
-  </div>
-
-  <div class="card">
-    <img src="6.jpg" alt="Бокал шампанське">
-    <h3>Бокал шампанське</h3>
-    <p>Ефектна свічка у бокалі з преміальним виглядом.</p>
-    <div class="price">199 грн</div>
-    <button onclick="setProduct('Бокал шампанське', this)">Обрати</button>
-  </div>
-
-</div>
-
-<hr>
-
-<div class="form-box">
-  <h2>Замовлення</h2>
-
-  <select id="product">
-    <option value="">Обери товар</option>
-    <option>Коньячний бокал</option>
-    <option>Кава</option>
-    <option>Десерт</option>
-    <option>Свічка в кашпо</option>
-    <option>Кашпо під чайні свічки</option>
-    <option>Бокал шампанське</option>
-  </select>
-
-  <input id="name" placeholder="Ім'я">
-  <input id="phone" placeholder="Телефон">
-  <input id="city" placeholder="Місто">
-  <input id="post" placeholder="Відділення">
-
-  <button type="button" class="submit-btn" onclick="sendOrder()">Замовити</button>
-</div>
-</div> <!-- ЗАКРЫТИЕ SLIDER -->
-<script>
-let product = "";
-
-function setProduct(name, btn){
-  product = name;
-
-  document.getElementById("product").value = name;
-
-  document.querySelectorAll(".card").forEach(card=>{
-    card.classList.remove("active");
-  });
-
-  btn.parentElement.classList.add("active");
-}
-
-function sendOrder(){
-
-  const name = document.getElementById("name").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const city = document.getElementById("city").value.trim();
-  const post = document.getElementById("post").value.trim();
-
-  if(!product){
-    alert("Обери товар");
-    return;
-  }
-
-  if(!name || !phone || !city || !post){
-    alert("Заповніть всі поля");
-    return;
-  }
-
-  const text =
-    "🛒 Товар: " + product + "\n" +
-    "👤 " + name + "\n" +
-    "📞 " + phone + "\n" +
-    "📦 НП: " + city + " / " + post;
-
-  const url =
-    "https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA/sendMessage?chat_id=8706193551&text=" +
-    encodeURIComponent(text);
-
-  fetch(url)
-  .then(res => res.json())
-  .then(data=>{
-    if(data.ok){
-      alert("Заявка відправлена 🔥");
-    }else{
-      alert("Помилка: " + data.description);
-    }
+fetch("https://api.telegram.org/bot8309821481:AAFJUBalSpC1njbBzzyPu1yNet99zS3SHBU/sendMessage", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    chat_id: 8629717657,
+    text: text
   })
-  .catch(()=>{
-    alert("Помилка мережі");
-  });
-}
-</script>
-
-  
-  let phone = document.getElementById("phone").value;
-
-  if(cart.length === 0){
-    alert("Додай товар");
-    return;
+})
+.then(res => res.json())
+.then(data => {
+  if (data.ok) {
+    alert("Відправлено ✅");
+  } else {
+    alert("Помилка: " + data.description);
   }
-
-  if(!name || !phone){
-    alert("Заповни дані");
-    return;
-  }
-
-  let text =
-  "🛒 " + cart.join(", ") + "\n" +
-  "👤 " + name + "\n" +
-  "📞 " + phone;
-
-  const url =
-  ""
-  + encodeURIComponent(text);
-
-  fetch(url)
-  .then(res => res.json())
-  .then(data=>{
-    if(data.ok){
-      alert("Відправлено 🔥");
-      cart = [];
-      updateCart();
-    }else{
-      alert("Помилка: " + data.description);
-    }
-  })
-  .catch(()=>{
-    alert("Помилка мережі");
-  });
-
+})
+.catch(() => {
+  alert("Помилка мережі");
+});
 }
+
 </script>
 
 </body>
