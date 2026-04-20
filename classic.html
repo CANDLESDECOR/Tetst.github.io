@@ -134,6 +134,81 @@ body{
   </div>
 
 </div>
+<div class="cart" id="cart">
 
+<div class="cart-header">
+<span>Кошик</span>
+<button onclick="toggleCart()">✖</button>
+</div>
+
+<div id="cart-items">Порожньо</div>
+
+<div class="total" id="total">Разом: 0 грн</div>
+
+<input id="name" placeholder="Ім’я">
+<input id="phone" placeholder="Телефон">
+
+<button onclick="order()">Замовити</button>
+
+</div>
+
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+  <script>
+function toggleCart(){
+  document.getElementById("cart").classList.toggle("active");
+  renderCart();
+}
+
+function add(name, price){
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  cart.push({name, price});
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert("Додано");
+}
+
+function renderCart(){
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+  let html = "";
+  let total = 0;
+
+  cart.forEach(item=>{
+    html += `<div>${item.name} - ${item.price} грн</div>`;
+    total += item.price;
+  });
+
+  document.getElementById("cart-items").innerHTML =
+    cart.length ? html : "Порожньо";
+
+  document.getElementById("total").innerText =
+    "Разом: " + total + " грн";
+}
+
+function order(){
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
+
+  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+
+  let text = "Замовлення:\n";
+  cart.forEach(i=>{
+    text += i.name + " " + i.price + " грн\n";
+  });
+
+  text += "\n👤 " + name + "\n📞 " + phone;
+
+  fetch("https://api.telegram.org/botXXX/sendMessage", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({
+      chat_id:"ТВОЙ_ID",
+      text:text
+    })
+  });
+
+  alert("Відправлено");
+  localStorage.removeItem("cart");
+}
+  </script>
 </body>
 </html>
