@@ -5,99 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANDLES HOME</title>
 
- <style>
+<style>
 body{
   margin:0;
   font-family:Arial, sans-serif;
+  background:#f5f5f5;
   color:#111;
-  background:linear-gradient(180deg,#f8f8f8,#eaeaea);
 }
 
 /* заголовок */
 h1{
-  letter-spacing:2px;
-  font-weight:700;
   padding:20px;
   margin:0;
-  color:#111;
-}
-
-/* слайдер */
-.slider{
-  overflow:hidden;
-  margin:15px;
-}
-
-.slides{
-  display:flex;
-  gap:10px;
-  animation:scroll 30s linear infinite;
-}
-
-.slide{
-  min-width:260px;
-  height:130px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  border-radius:20px;
-
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(20px);
-
-  border:1px solid rgba(0,0,0,0.05);
-
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-@keyframes scroll{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(-50%);}
-}
-
-/* категории */
-.card{
-  padding:20px;
-  border-radius:20px;
-
-  background:rgba(255,255,255,0.6);
-  backdrop-filter:blur(20px);
-
-  border:1px solid rgba(0,0,0,0.05);
-
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-
-  transition:0.2s;
-}
-
-.card:active{
-  transform:scale(0.97);
-}
-
-.card-title{
-  font-size:20px;
   font-weight:700;
-  margin-bottom:5px;
-}
-
-.card-sub{
-  font-size:13px;
-  color:#777;
-}ms:center;
-  justify-content:center;
-
-  font-size:22px;
-  cursor:pointer;
-
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-  }
-
-/* ссылки */
-a{
-  text-decoration:none;
-  color:#111;
 }
 
 /* кнопка корзины */
@@ -105,181 +25,172 @@ a{
   position:fixed;
   top:20px;
   right:20px;
-
   width:55px;
   height:55px;
-
   border-radius:50%;
-
-  background:rgba(255,255,255,0.7);
-  backdrop-filter:blur(20px);
-
+  background:#fff;
   display:flex;
-  align-ite.grid{
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  cursor:pointer;
+  box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* категории */
+.grid{
   display:grid;
   grid-template-columns:1fr;
-  gap:15px;
+  gap:12px;
   padding:15px;
 }
 
-
-/* корзина */
-
-
-/* крестик */
-.close{
-  position:absolute;
-  top:20px;
-  right:20px;
-
-  font-size:22.cart{
-  position:fixed;
-  bottom:0;
-  left:0;
-  width:100%;
-
-  background:rgba(255,255,255,0.9);
-  backdrop-filter:blur(20px);
-
-  padding:15px;
-
-  border-top-left-radius:20px;
-  border-top-right-radius:20px;
-
-  box-shadow:0 -5px 20px rgba(0,0,0,0.1);
-}px;
+.card{
+  padding:20px;
+  border-radius:20px;
+  background:#fff;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
   cursor:pointer;
 }
 
-/* список */
-#cart-items{
-  text-align:center;
+.card:active{ background:#ddd; }
+
+.card small{
+  display:block;
   color:#777;
-  margin-bottom:15px;
+  margin-top:5px;
 }
 
-/* поля */
-.cart input{
-  width:100%;
-  padding:14px;
-  margin-bottom:10px;
+/* товары */
+.products{
+  padding:15px;
+  display:none;
+  flex-direction:column;
+  gap:10px;
+}
 
-  border-radius:14px;
-
-  border:1px solid #ddd;
+.product{
   background:#fff;
-
-  color:#111;
+  padding:15px;
+  border-radius:15px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 
-/* кнопка */
-.cart button{
+.product button{
+  margin-top:10px;
   width:100%;
-  padding:16px;
-
+  padding:10px;
   border:none;
-  border-radius:16px;
-
+  border-radius:10px;
   background:#111;
   color:#fff;
+}
 
-  font-size:16px;
-  font-weight:600;
+/* корзина */
+.cart{
+  position:fixed;
+  bottom:-100%;
+  left:0;
+  width:100%;
+  height:70%;
+  background:#fff;
+  padding:20px;
+  border-radius:20px 20px 0 0;
+  transition:0.3s;
+  box-shadow:0 -5px 20px rgba(0,0,0,0.2);
+  overflow:auto;
+}
 
-  box-shadow:0 6px 15px rgba(0,0,0,0.1);
+.cart.active{ bottom:0; }
+
+.close{
+  position:absolute;
+  top:15px;
+  right:20px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.cart-item{
+  margin-bottom:10px;
+}
+
+.cart input{
+  width:100%;
+  padding:12px;
+  margin-top:10px;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.cart button{
+  width:100%;
+  padding:14px;
+  margin-top:10px;
+  border:none;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
 }
 
 /* футер */
 .footer{
   text-align:center;
   padding:20px;
-  color:#666;
-}
-  .close{
-  position:absolute;
-  top:20px;
-  right:20px;
-
-  font-size:20px;
-  cursor:pointer;
-  }
-  .cart-btn:active{
-  transform:scale(0.9);
-  }
-  a, .card{
-  -webkit-tap-highlight-color: transparent;
-  }
-  .page{
-  display:none;
-  padding:20px;
-}
-
-.page.active{
-  display:block;
+  color:#777;
 }
 </style>
-  
 </head>
+
 <body>
 
 <h1>CANDLES HOME</h1>
 
-<!-- кнопка корзины -->
 <div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-<!-- баннер -->
-<div class="slider">
-  <div class="slides">
-    <div class="slide">Promo1</div>
-    <div class="slide">Promo2</div>
-    <div class="slide">Promo3</div>
-    <div class="slide">Promo4</div>
-
-    <div class="slide">Promo1</div>
-    <div class="slide">Promo2</div>
-    <div class="slide">Promo3</div>
-    <div class="slide">Promo4</div>
-  </div>
-</div>
-
 <!-- категории -->
-<div class="card" onclick="openPage('classic')">
-    <div class="card-title">Classic</div>
-    <div class="card-sub">Класичні свічки</div>
+<div class="grid">
+
+  <div class="card" onclick="openCategory('classic')">
+    Classic
+    <small>Класичні свічки</small>
   </div>
 
-  <div class="card" onclick="openPage('loft')">
-    <div class="card-title">Loft</div>
-    <div class="card-sub">Мінімал стиль</div>
+  <div class="card" onclick="openCategory('loft')">
+    Loft
+    <small>Мінімал стиль</small>
   </div>
 
-  <div class="card" onclick="openPage('dessert')">
-    <div class="card-title">Десертні</div>
-    <div class="card-sub">Як справжні десерти</div>
+  <div class="card" onclick="openCategory('dessert')">
+    Десертні
+    <small>Як справжні десерти</small>
   </div>
 
-  <div class="card" onclick="openPage('kashpo')">
-    <div class="card-title">Кашпо</div>
-    <div class="card-sub">Декор та стиль</div>
+  <div class="card" onclick="openCategory('kashpo')">
+    Кашпо
+    <small>Декор</small>
   </div>
 
-  </div>"phone" placeholder="Телефон">
-
-  <button onclick="order()">Замовити</button>
 </div>
- 
+
+<!-- товары -->
+<div id="products" class="products"></div>
+
 <!-- корзина -->
-  <div class="cart">
-  <div class="cart-btn" onclick="toggleCart()">●</div>
+<div class="cart">
+  <div class="close" onclick="toggleCart()">✖</div>
 
   <h3>Кошик</h3>
 
   <div id="cart-items">Порожньо</div>
+  <div id="total"></div>
 
   <input id="name" placeholder="Ваше ім’я">
-  <input id=<div class="grid">
+  <input id="phone" placeholder="Телефон">
 
-  </div>
+  <button onclick="order()">Замовити</button>
+</div>
+
 <!-- футер -->
 <div class="footer">
   Instagram: candleshome.store<br>
@@ -287,13 +198,76 @@ a{
 </div>
 
 <script>
- function openPage(id){
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
+let cart = [];
+
+const data = {
+  classic: [
+    {name:"Classic біла", price:150},
+    {name:"Classic чорна", price:180}
+  ],
+  loft: [
+    {name:"Loft бетон", price:250},
+    {name:"Loft чорна", price:230}
+  ],
+  dessert: [
+    {name:"Свічка торт", price:300},
+    {name:"Свічка клубника", price:280}
+  ],
+  kashpo: [
+    {name:"Кашпо біле", price:200},
+    {name:"Кашпо чорне", price:220}
+  ]
+};
+
+function openCategory(cat){
+  let block = document.getElementById("products");
+  block.style.display = "flex";
+  block.innerHTML = "";
+
+  data[cat].forEach(p=>{
+    block.innerHTML += `
+      <div class="product">
+        <b>${p.name}</b><br>
+        ${p.price} грн
+        <button onclick="addToCart('${p.name}',${p.price})">В кошик</button>
+      </div>
+    `;
+  });
+}
+
+function addToCart(name, price){
+  cart.push({name, price});
+  renderCart();
+}
+
+function renderCart(){
+  let list = document.getElementById("cart-items");
+  let total = 0;
+  list.innerHTML = "";
+
+  cart.forEach((item,i)=>{
+    total += item.price;
+    list.innerHTML += `
+      <div class="cart-item">
+        ${item.name} - ${item.price} грн
+        <button onclick="removeItem(${i})">❌</button>
+      </div>
+    `;
   });
 
-  document.getElementById(id).classList.add("active");
- }
+  document.getElementById("total").innerHTML = "<b>Разом: "+total+" грн</b>";
+
+  if(cart.length===0){
+    list.innerHTML = "Порожньо";
+    document.getElementById("total").innerHTML = "";
+  }
+}
+
+function removeItem(i){
+  cart.splice(i,1);
+  renderCart();
+}
+
 function toggleCart(){
   document.querySelector(".cart").classList.toggle("active");
 }
@@ -302,18 +276,22 @@ function order(){
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
 
-  let text = "🔥 Замовлення\n👤 " + name + "\n📞 " + phone;
+  let text = "Замовлення\n👤 "+name+"\n📞 "+phone+"\n\n";
 
-  fetch("https://api.telegram.org/bot8309821481:AA.../sendMessage", {
+  cart.forEach(item=>{
+    text += item.name+" - "+item.price+" грн\n";
+  });
+
+  fetch("https://api.telegram.org/botВАШ_ТОКЕН/sendMessage", {
     method:"POST",
     headers:{ "Content-Type":"application/json" },
     body: JSON.stringify({
-      chat_id:"862977657",
+      chat_id:"ВАШ_ID",
       text:text
     })
   });
 
-  alert("Заявка відправлена 🔥");
+  alert("Замовлення відправлено");
 }
 </script>
 
