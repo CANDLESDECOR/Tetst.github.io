@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Classic</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#111;}
+h1{padding:20px;}
+
+.product{
+background:#fff;padding:15px;margin:10px;border-radius:10px;
+}
+
+button{
+width:100%;padding:10px;margin-top:10px;
+}
+
+.cart{
+position:fixed;bottom:-100%;left:0;width:100%;
+background:#fff;padding:20px;transition:0.3s;
+}
+.cart.active{bottom:0;}
+</style>
+</head>
+
+<body>
+
+<h1 onclick="location.href='index.html'">⬅ Classic</h1>
+
+<div class="product">
+Свічка Classic 150 грн
+<button onclick="addToCart('Classic',150)">В кошик</button>
+</div>
+
+<div class="product">
+Свічка Black 180 грн
+<button onclick="addToCart('Black',180)">В кошик</button>
+</div>
+
+<div class="cart">
+<h3>Кошик</h3>
+<div id="cart-items"></div>
+<div id="total"></div>
+
+<input id="name" placeholder="Ім’я">
+<input id="phone" placeholder="Телефон">
+
+<button onclick="order()">Замовити</button>
+</div>
+
+<script>
+let cart = JSON.parse(localStorage.getItem("cart"))||[];
+
+function addToCart(name,price){
+cart.push({name,price});
+localStorage.setItem("cart",JSON.stringify(cart));
+renderCart();
+}
+
+function renderCart(){
+let list=document.getElementById("cart-items");
+let total=0;
+list.innerHTML="";
+cart.forEach(i=>{
+total+=i.price;
+list.innerHTML+=i.name+" "+i.price+" грн<br>";
+});
+document.getElementById("total").innerHTML="Разом: "+total;
+}
+
+function order(){
+alert("Замовлення відправлено");
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
