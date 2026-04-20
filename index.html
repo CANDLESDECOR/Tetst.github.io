@@ -131,31 +131,6 @@ h1{
 
 /* корзина */
 .cart{
-  position:fixed;
-  top:0;
-  right:-100%;
-  width:80%;
-  height:100%;
-  padding:20px;
-  background:
-    linear-gradient(180deg, rgba(25,25,25,0.96), rgba(10,10,10,0.98));
-  backdrop-filter:blur(26px);
-  border-left:1px solid rgba(255,255,255,0.08);
-  box-shadow:-10px 0 35px rgba(0,0,0,0.45);
-  transition:0.35s ease;
-  z-index:999;
-  overflow:auto;
-}
-
-.cart.active{
-  right:0;
-}
-
-.cart h3{
-  margin-top:0;
-  font-size:24px;
-  color:#f3f3f3;
-}
 
 /* поля */
 input{
@@ -171,7 +146,38 @@ input{
   box-sizing:border-box;
 }
 
-input::placeholder{
+input::placehol.cart{
+  margin-top:30px;
+  padding:20px;
+
+  border-radius:20px;
+
+  background:rgba(255,255,255,0.06);
+  backdrop-filter:blur(20px);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:#fff;
+}
+
+.cart h3{
+  color:#fff;
+  margin-bottom:10px;
+}
+
+#cart-items{
+  color:#aaa;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.cart input{
+  color:#fff;
+}
+
+.cart input::placeholder{
+  color:#aaa;
+}der{
   color:#bdbdbd;
 }
 
@@ -270,6 +276,10 @@ button{
 <!-- КАРЗИНА -->
 <h3>Кошик</h3>
 
+<div class="cart">
+
+<h3>Кошик</h3>
+
 <div id="cart-items">Порожньо</div>
 
 <hr>
@@ -279,6 +289,7 @@ button{
 
 <button onclick="order()">Замовити</button>
 
+</div>
 <!-- ФУТЕР -->
 <div class="footer">
   Instagram: candleshome.store<br>
