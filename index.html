@@ -8,23 +8,22 @@
 <style>
 body{
 margin:0;
-font-family:-apple-system;
 background:#000;
 color:#fff;
+font-family:Arial;
 }
 
 /* заголовок */
 h1{
 padding:20px;
-margin:0;
 }
 
 /* баннер */
 .banner{
-height:180px;
+height:200px;
+background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
 margin:10px;
 border-radius:20px;
-background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
 }
 
 /* сетка */
@@ -35,9 +34,10 @@ gap:15px;
 padding:15px;
 }
 
+/* карточка */
 .card{
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(15px);
 border-radius:20px;
 padding:10px;
 text-align:center;
@@ -45,18 +45,9 @@ text-align:center;
 
 .card img{
 width:100%;
-height:120px;
+height:100px;
 object-fit:cover;
 border-radius:12px;
-}
-
-.card button{
-margin-top:10px;
-width:100%;
-padding:10px;
-border:none;
-border-radius:12px;
-font-weight:600;
 }
 
 /* кнопка корзины */
@@ -72,7 +63,7 @@ backdrop-filter:blur(25px);
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:20px;
+font-size:22px;
 z-index:999;
 }
 
@@ -83,12 +74,11 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
-backdrop-filter:blur(5px);
+background:rgba(0,0,0,0.6);
 opacity:0;
 pointer-events:none;
 transition:0.3s;
-z-index:900;
+z-index:998;
 }
 
 .overlay.active{
@@ -99,15 +89,15 @@ pointer-events:auto;
 /* корзина */
 .cart{
 position:fixed;
-right:-100%;
 top:0;
-width:85%;
+right:-100%;
+width:80%;
 height:100%;
 background:rgba(0,0,0,0.95);
 backdrop-filter:blur(25px);
 transition:0.4s;
 padding:20px;
-z-index:1000;
+z-index:999;
 }
 
 .cart.active{
@@ -117,7 +107,7 @@ right:0;
 input{
 width:100%;
 padding:12px;
-margin:6px 0;
+margin:5px 0;
 border-radius:10px;
 border:none;
 }
@@ -130,56 +120,77 @@ border:none;
 border-radius:12px;
 font-weight:600;
 }
-
-.remove{
-background:red;
-color:#fff;
-margin-top:5px;
-}
 </style>
+
 </head>
 
 <body>
 
-<h1>CANDLES HOME</h1>
+<div id="home">
 
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
+<h1>CANDLES HOME</h1>
 
 <div class="banner"></div>
 
 <div class="grid">
 
-<div class="card">
+<div class="card" onclick="openPage('loft')">
 <img src="https://images.unsplash.com/photo-1602524816722-3a0f6fba9c01">
-Loft
-<button onclick="addToCart('Loft')">Додати</button>
+<div>Loft</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openPage('classic')">
 <img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
-Classic
-<button onclick="addToCart('Classic')">Додати</button>
+<div>Classic</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openPage('dessert')">
 <img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
-Десертні
-<button onclick="addToCart('Десертні')">Додати</button>
+<div>Десертні</div>
 </div>
 
-<div class="card">
+<div class="card" onclick="openPage('kashpo')">
 <img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
-Кашпо
-<button onclick="addToCart('Кашпо')">Додати</button>
+<div>Кашпо</div>
 </div>
 
 </div>
 
+</div>
+
+<!-- страницы -->
+<div id="loft" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Loft</h2>
+<button onclick="addToCart('Loft')">Добавить</button>
+</div>
+
+<div id="classic" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Classic</h2>
+<button onclick="addToCart('Classic')">Добавить</button>
+</div>
+
+<div id="dessert" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Десертні</h2>
+<button onclick="addToCart('Dessert')">Добавить</button>
+</div>
+
+<div id="kashpo" style="display:none;padding:20px;">
+<button onclick="back()">← Назад</button>
+<h2>Кашпо</h2>
+<button onclick="addToCart('Kashpo')">Добавить</button>
+</div>
+
+<!-- кнопка -->
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
+<!-- overlay -->
 <div class="overlay" onclick="toggleCart()"></div>
 
+<!-- корзина -->
 <div class="cart">
-<div style="text-align:right; font-size:24px; cursor:pointer;" onclick="toggleCart()">✕</div>
-
 <h3>Кошик</h3>
 <div id="cart-items">Кошик порожній</div>
 
@@ -190,37 +201,28 @@ Classic
 </div>
 
 <script>
+
 let cart = [];
 
+function openPage(p){
+document.getElementById("home").style.display="none";
+["loft","classic","dessert","kashpo"].forEach(i=>document.getElementById(i).style.display="none");
+document.getElementById(p).style.display="block";
+}
+
+function back(){
+document.getElementById("home").style.display="block";
+["loft","classic","dessert","kashpo"].forEach(i=>document.getElementById(i).style.display="none");
+}
+
 function toggleCart(){
-document.querySelector('.cart').classList.toggle('active');
-document.querySelector('.overlay').classList.toggle('active');
+document.querySelector(".cart").classList.toggle("active");
+document.querySelector(".overlay").classList.toggle("active");
 }
 
-function addToCart(name){
-cart.push(name);
-renderCart();
-}
-
-function renderCart(){
-let el = document.getElementById("cart-items");
-
-if(cart.length === 0){
-el.innerHTML = "Кошик порожній";
-return;
-}
-
-el.innerHTML = cart.map((item,i)=>`
-<div>
-${item}
-<button class="remove" onclick="removeItem(${i})">✕</button>
-</div>
-`).join("");
-}
-
-function removeItem(i){
-cart.splice(i,1);
-renderCart();
+function addToCart(item){
+cart.push(item);
+document.getElementById("cart-items").innerHTML = cart.join("<br>");
 }
 
 function order(){
@@ -233,20 +235,22 @@ alert("Заповни дані");
 return;
 }
 
-let text = `НОВЕ ЗАМОВЛЕННЯ
-Ім'я: ${name}
-Телефон: ${phone}
-Товари: ${cart.join(", ")}`;
+let text = "Замовлення:\n"+cart.join(", ")+"\nІм'я:"+name+"\nТел:"+phone;
 
-let url = "https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA"/sendMessage?chat_id=8706193551&text= + encodeURIComponent(text);
+let url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text="+encodeURIComponent(text);
 
-window.open(url, "_blank");
-
-alert("Заявка відправлена");
-
-cart = [];
-renderCart();
+fetch(url)
+.then(r=>r.json())
+.then(d=>{
+if(d.ok){
+alert("Відправлено 🔥");
+}else{
+alert("Помилка: "+d.description);
 }
+});
+
+}
+
 </script>
 
 </body>
