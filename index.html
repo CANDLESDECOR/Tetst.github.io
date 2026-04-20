@@ -7,136 +7,134 @@
 
 <style>
 body{
-  margin:0;
-  font-family:-apple-system, BlinkMacSystemFont;
-  background:#000;
-  color:#fff;
+margin:0;
+font-family:-apple-system;
+background:#000;
+color:#fff;
 }
 
-/* HEADER */
+/* заголовок */
 h1{
-  padding:20px;
-  font-size:28px;
+padding:20px;
+margin:0;
 }
 
-/* БАННЕР */
+/* баннер */
 .banner{
-  height:180px;
-  margin:0 16px;
-  border-radius:24px;
-  background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
-  position:relative;
-  overflow:hidden;
+height:180px;
+margin:10px;
+border-radius:20px;
+background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
 }
 
-.banner::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.4);
-  backdrop-filter:blur(8px);
-}
-
-/* БАННЕР СЛАЙДЫ */
-.banners{
-  display:flex;
-  gap:12px;
-  padding:16px;
-  overflow:auto;
-}
-
-.slide{
-  min-width:220px;
-  height:100px;
-  border-radius:20px;
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(20px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:600;
-}
-
-/* КАТЕГОРИИ */
+/* сетка */
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px;
-  padding:16px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+padding:15px;
 }
 
 .card{
-  background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(30px);
-  border-radius:22px;
-  overflow:hidden;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+border-radius:20px;
+padding:10px;
+text-align:center;
 }
 
 .card img{
-  width:100%;
-  height:120px;
-  object-fit:cover;
+width:100%;
+height:120px;
+object-fit:cover;
+border-radius:12px;
 }
 
-.card div{
-  padding:12px;
-  font-size:16px;
+.card button{
+margin-top:10px;
+width:100%;
+padding:10px;
+border:none;
+border-radius:12px;
+font-weight:600;
 }
 
-/* КНОПКА КОРЗИНЫ */
+/* кнопка корзины */
 .cart-btn{
-  position:fixed;
-  top:20px;
-  right:20px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.1);
-  backdrop-filter:blur(25px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:20px;
-  z-index:999;
+position:fixed;
+top:20px;
+right:20px;
+width:55px;
+height:55px;
+border-radius:50%;
+background:rgba(255,255,255,0.1);
+backdrop-filter:blur(25px);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+z-index:999;
 }
 
-/* КОРЗИНА */
+/* overlay */
+.overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(5px);
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+z-index:900;
+}
+
+.overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* корзина */
 .cart{
-  position:fixed;
-  right:-100%;
-  top:0;
-  width:80%;
-  height:100%;
-  background:rgba(0,0,0,0.95);
-  backdrop-filter:blur(25px);
-  transition:0.4s;
-  padding:20px;
-  z-index:1000;
+position:fixed;
+right:-100%;
+top:0;
+width:85%;
+height:100%;
+background:rgba(0,0,0,0.95);
+backdrop-filter:blur(25px);
+transition:0.4s;
+padding:20px;
+z-index:1000;
 }
 
 .cart.active{
-  right:0;
-}
-
-.cart h3{
-  margin-top:0;
+right:0;
 }
 
 input{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:12px;
-  border:none;
+width:100%;
+padding:12px;
+margin:6px 0;
+border-radius:10px;
+border:none;
 }
 
 button{
-  width:100%;
-  padding:14px;
-  margin-top:10px;
-  border:none;
-  border-radius:14px;
-  font-weight:600;
+width:100%;
+padding:14px;
+margin-top:10px;
+border:none;
+border-radius:12px;
+font-weight:600;
+}
+
+.remove{
+background:red;
+color:#fff;
+margin-top:5px;
 }
 </style>
 </head>
@@ -145,56 +143,86 @@ button{
 
 <h1>CANDLES HOME</h1>
 
-<!-- БАННЕР -->
-<div class="banner"></div>
-
-<!-- СЛАЙДЫ -->
-<div class="banners">
-  <div class="slide">Знижки</div>
-  <div class="slide">Новинки</div>
-  <div class="slide">Хіти</div>
-</div>
-
-<!-- КАТЕГОРИИ -->
-<div class="grid">
-
-<div class="card" onclick="addToCart('Loft')">
-  <img src="https://images.unsplash.com/photo-1602524815924-7c4b0a7d5f8d">
-  <div>Loft</div>
-</div>
-
-<div class="card" onclick="addToCart('Classic')">
-  <img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
-  <div>Classic</div>
-</div>
-
-<div class="card" onclick="addToCart('Десертні')">
-  <img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
-  <div>Десертні</div>
-</div>
-
-<div class="card" onclick="addToCart('Кашпо')">
-  <img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
-  <div>Кашпо</div>
-</div>
-
-</div>
-
-<!-- КНОПКА -->
 <div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-<!-- КОРЗИНА -->
+<div class="banner"></div>
+
+<div class="grid">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1602524816722-3a0f6fba9c01">
+Loft
+<button onclick="addToCart('Loft')">Додати</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
+Classic
+<button onclick="addToCart('Classic')">Додати</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
+Десертні
+<button onclick="addToCart('Десертні')">Додати</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
+Кашпо
+<button onclick="addToCart('Кашпо')">Додати</button>
+</div>
+
+</div>
+
+<div class="overlay" onclick="toggleCart()"></div>
+
 <div class="cart">
-  <h3>Кошик</h3>
-  <div id="cart-items">Кошик порожній</div>
+<div style="text-align:right; font-size:24px; cursor:pointer;" onclick="toggleCart()">✕</div>
 
-  <input id="name" placeholder="Ім'я">
-  <input id="phone" placeholder="Телефон">
+<h3>Кошик</h3>
+<div id="cart-items">Кошик порожній</div>
 
-  <button onclick="order()">Замовити</button>
+<input id="name" placeholder="Ім'я">
+<input id="phone" placeholder="Телефон">
+
+<button onclick="order()">Замовити</button>
 </div>
 
 <script>
+let cart = [];
+
+function toggleCart(){
+document.querySelector('.cart').classList.toggle('active');
+document.querySelector('.overlay').classList.toggle('active');
+}
+
+function addToCart(name){
+cart.push(name);
+renderCart();
+}
+
+function renderCart(){
+let el = document.getElementById("cart-items");
+
+if(cart.length === 0){
+el.innerHTML = "Кошик порожній";
+return;
+}
+
+el.innerHTML = cart.map((item,i)=>`
+<div>
+${item}
+<button class="remove" onclick="removeItem(${i})">✕</button>
+</div>
+`).join("");
+}
+
+function removeItem(i){
+cart.splice(i,1);
+renderCart();
+}
+
 function order(){
 
 let name = document.getElementById("name").value;
@@ -205,17 +233,19 @@ alert("Заповни дані");
 return;
 }
 
-let text = `НОВЕ ЗАМОВЛЕННЯ:
+let text = `НОВЕ ЗАМОВЛЕННЯ
 Ім'я: ${name}
-Телефон: ${phone}`;
+Телефон: ${phone}
+Товари: ${cart.join(", ")}`;
 
-// ТВОЙ API
 let url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text=" + encodeURIComponent(text);
 
-// ОТПРАВКА
 window.open(url, "_blank");
 
-alert("Заявка відправлена 🔥");
+alert("Заявка відправлена");
+
+cart = [];
+renderCart();
 }
 </script>
 
