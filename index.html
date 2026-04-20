@@ -200,13 +200,35 @@ button{
   border-top:1px solid rgba(255,255,255,0.08);
   margin-top:20px;
 }
+  .cart hr{
+  border:none;
+  height:1px;
+  background:rgba(255,255,255,0.08);
+  margin:15px 0;
+}
+
+#cart-items{
+  text-align:center;
+  opacity:0.6;
+  font-size:14px;
+}
+
+.cart{
+  gap:10px;
+  box-shadow:
+    -10px 0 40px rgba(0,0,0,0.6),
+    -5px 0 20px rgba(255,200,120,0.05);
+}
+
+.cart button{
+  background:linear-gradient(145deg,#4a4a4a,#1a1a1a);
+}
 </style><!DOCTYPE html>
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANDLES HOME</title>
-
 
 </style>
 </head>
@@ -245,21 +267,17 @@ button{
   <a href="kashpo.html" class="card">Кашпо</a>
 
 </div>
+<!-- КАРЗИНА -->
+<h3>Кошик</h3>
 
-<!-- КОРЗИНА -->
-<div class="cart-btn" onclick="toggleCart()">🛒</div>
+<div id="cart-items">Порожньо</div>
 
-<div class="overlay" onclick="toggleCart()"></div>
+<hr>
 
-<div class="cart">
-  <h3>Кошик</h3>
-  <div id="cart-items">Порожньо</div>
+<input id="name" placeholder="Ваше ім’я">
+<input id="phone" placeholder="Телефон">
 
-  <input id="name" placeholder="Ім'я">
-  <input id="phone" placeholder="Телефон">
-
-  <button onclick="order()">Замовити</button>
-</div>
+<button onclick="order()">Замовити</button>
 
 <!-- ФУТЕР -->
 <div class="footer">
