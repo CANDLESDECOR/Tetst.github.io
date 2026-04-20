@@ -1,20 +1,15 @@
 <style>
 body{
-  margin:0;
-  font-family:Arial, sans-serif;
   background:
-    radial-gradient(circle at top, #2a2a2a 0%, #111 35%, #000 100%);
-  color:#fff;
+    radial-gradient(circle at top, #3a3a3a 0%, #1a1a1a 40%, #000 100%);
 }
 
 /* заголовок */
 h1{
-  padding:20px;
-  text-align:center;
-  letter-spacing:3px;
-  font-weight:700;
-  color:#f2f2f2;
-  text-shadow:0 2px 10px rgba(255,255,255,0.08);
+  color:#f5f5f5;
+  text-shadow:
+    0 0 10px rgba(255,200,120,0.2),
+    0 0 25px rgba(255,180,80,0.1);
 }
 
 /* баннеры */
@@ -39,21 +34,12 @@ h1{
 }
 
 .slide{
-  min-width:280px;
-  height:160px;
-  border-radius:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:18px;
-  font-weight:600;
-  color:#f5f5f5;
   background:
-    linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
-  border:1px solid rgba(255,255,255,0.08);
+    linear-gradient(145deg, rgba(255,255,255,0.20), rgba(255,255,255,0.06));
+
   box-shadow:
-    0 8px 25px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.08);
+    0 10px 30px rgba(0,0,0,0.4),
+    0 0 20px rgba(255,255,255,0.08);
 }
 
 @keyframes scroll{
@@ -70,31 +56,22 @@ h1{
 }
 
 .card{
-  min-height:110px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  text-decoration:none;
-  color:#fff;
-  font-size:18px;
-  font-weight:600;
-  border-radius:24px;
   background:
-    linear-gradient(145deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
-  backdrop-filter:blur(20px);
-  -webkit-backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.08);
+    linear-gradient(145deg, rgba(255,255,255,0.18), rgba(255,255,255,0.05));
+  
   box-shadow:
-    0 10px 30px rgba(0,0,0,0.40),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-  transition:0.25s ease;
+    0 10px 30px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    0 0 25px rgba(255,255,255,0.05);
 }
 
 .card:hover{
-  transform:translateY(-2px);
   background:
-    linear-gradient(145deg, rgba(255,255,255,0.13), rgba(255,255,255,0.04));
+    linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.08));
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.5),
+    0 0 30px rgba(255,255,255,0.15);
 }
 
 .card:active{
