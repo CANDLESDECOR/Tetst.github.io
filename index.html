@@ -1,275 +1,200 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANDLES HOME</title>
 
 <style>
 body{
-margin:0;
-background:#000;
-color:#fff;
-font-family:Arial;
+  margin:0;
+  background:#000;
+  color:#fff;
+  font-family:Arial;
 }
 
 /* заголовок */
 h1{
-padding:20px;
+  text-align:center;
+  padding:20px;
+  letter-spacing:2px;
 }
 
-/* баннер */
-.banner{
-height:200px;
-background:url('https://images.unsplash.com/photo-1603006905003-be475563bc59') center/cover;
-margin:10px;
-border-radius:20px;
-}
-
-/* сетка */
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-padding:15px;
-}
-
-/* карточки */
-.card{
-background:rgba(255,255,255,0.05);
-backdrop-filter:blur(15px);
-border-radius:20px;
-padding:10px;
-text-align:center;
-cursor:pointer;
-}
-
-.card img{
-width:100%;
-height:100px;
-object-fit:cover;
-border-radius:12px;
-}
-
-/* кнопка корзины */
-.cart-btn{
-position:fixed;
-top:20px;
-right:20px;
-width:55px;
-height:55px;
-border-radius:50%;
-background:rgba(255,255,255,0.1);
-backdrop-filter:blur(25px);
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:22px;
-z-index:1000;
-cursor:pointer;
-}
-
-/* overlay */
-.overlay{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-opacity:0;
-pointer-events:none;
-transition:0.3s;
-z-index:998;
-}
-
-.overlay.active{
-opacity:1;
-pointer-events:auto;
-}
-
-/* корзина */
-.cart{
-position:fixed;
-top:0;
-right:-100%;
-width:80%;
-height:100%;
-background:rgba(0,0,0,0.95);
-backdrop-filter:blur(25px);
-transition:0.4s;
-padding:20px;
-z-index:999;
-overflow:auto;
-}
-
-.cart.active{
-right:0;
-}
-
-input{
-width:100%;
-padding:12px;
-margin:5px 0;
-border-radius:10px;
-border:none;
-}
-
-button{
-width:100%;
-padding:14px;
-margin-top:10px;
-border:none;
-border-radius:12px;
-font-weight:600;
-cursor:pointer;
-}
 /* СЛАЙДЕР */
 .slider{
   overflow:hidden;
+  margin:10px;
   border-radius:20px;
-  margin:15px;
 }
 
 .slides{
   display:flex;
-  width:400%;
-  animation:slide 16s infinite;
+  gap:10px;
+  width:max-content;
+  animation:scroll 25s linear infinite;
 }
 
-.slides img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
+.slide{
+  min-width:280px;
+  height:160px;
+  border-radius:20px;
+  background:#111;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
 }
 
-@keyframes slide{
+/* бесконечная прокрутка */
+@keyframes scroll{
   0%{transform:translateX(0);}
-  25%{transform:translateX(-100%);}
-  50%{transform:translateX(-200%);}
-  75%{transform:translateX(-300%);}
-  100%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* карточки */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  padding:15px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(15px);
+  border-radius:20px;
+  padding:20px;
+  text-align:center;
+  cursor:pointer;
+}
+
+/* корзина */
+.cart-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
+  background:#222;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:1000;
+}
+
+.cart{
+  position:fixed;
+  right:-100%;
+  top:0;
+  width:80%;
+  height:100%;
+  background:#111;
+  padding:20px;
+  transition:0.3s;
+}
+
+.cart.active{
+  right:0;
+}
+
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  opacity:0;
+  pointer-events:none;
+}
+
+.overlay.active{
+  opacity:1;
+  pointer-events:auto;
+}
+  .card{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  color:#fff;
+  }
+
+/* футер */
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#aaa;
 }
 </style>
 </head>
 
-  </head>
 <body>
 
-<div id="home">
-
 <h1>CANDLES HOME</h1>
-</div>
+
+<!-- БАННЕРЫ -->
 <div class="slider">
   <div class="slides">
 
-    <img src="https://images.unsplash.com/photo-1602874801006-6f7b7c2f3e0d">
-    <img src="https://images.unsplash.com/photo-1603006905003-be475563bc59">
-    <img src="https://images.unsplash.com/photo-1616628182505-3f7f954ed7be">
-    <img src="https://images.unsplash.com/photo-1602524205483-26c55e0dcd42">
+    <div class="slide">Promo1</div>
+    <div class="slide">Promo2</div>
+    <div class="slide">Promo3</div>
+    <div class="slide">Promo4</div>
+
+    <!-- дублируем для бесконечности -->
+    <div class="slide">Promo1</div>
+    <div class="slide">Promo2</div>
+    <div class="slide">Promo3</div>
+    <div class="slide">Promo4</div>
 
   </div>
-<div class="banner"></div>
+</div>
 
+<!-- КАТЕГОРИИ -->
 <div class="grid">
 
-<div class="card" onclick="openPage('loft')">
-<img src="https://images.unsplash.com/photo-1602524816722-3a0f6fba9c01">
-<div>Loft</div>
-</div>
+  <a href="classic.html" class="card">Classic</a>
 
-<div class="card" onclick="openPage('classic')">
-<img src="https://images.unsplash.com/photo-1616628182506-1f3f954ed7be">
-<div>Classic</div>
-</div>
+  <a href="loft.html" class="card">Loft</a>
 
-<div class="card" onclick="openPage('dessert')">
-<img src="https://images.unsplash.com/photo-1602874801006-e26f3c1d0c92">
-<div>Десертні</div>
-</div>
+  <a href="dessert.html" class="card">Десертні</a>
 
-<div class="card" onclick="openPage('kashpo')">
-<img src="https://images.unsplash.com/photo-1616627454026-48c58c2c299c">
-<div>Кашпо</div>
-</div>
+  <a href="kashpo.html" class="card">Кашпо</a>
 
 </div>
 
-</div>
-
-<!-- страницы -->
-<div id="loft" style="display:none;padding:20px;">
-<button onclick="back()">← Назад</button>
-<h2>Loft</h2>
-</div>
-
-<div id="classic" style="display:none;padding:20px;">
-<button onclick="back()">← Назад</button>
-<h2>Classic</h2>
-
-</div>
-
-<div id="dessert" style="display:none;padding:20px;">
-<button onclick="back()">← Назад</button>
-<h2>Десертні</h2>
-
-</div>
-
-<div id="kashpo" style="display:none;padding:20px;">
-<button onclick="back()">← Назад</button>
-<h2>Кашпо</h2>
-
-</div>
-
-<!-- кнопка -->
+<!-- КОРЗИНА -->
 <div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-<!-- overlay -->
 <div class="overlay" onclick="toggleCart()"></div>
 
-<!-- корзина -->
 <div class="cart">
-<h3>Кошик</h3>
-<div id="cart-items">Кошик порожній</div>
+  <h3>Кошик</h3>
+  <div id="cart-items">Порожньо</div>
 
-<input id="name" placeholder="Ім'я">
-<input id="phone" placeholder="Телефон">
+  <input id="name" placeholder="Ім'я">
+  <input id="phone" placeholder="Телефон">
 
-<button onclick="order()">Замовити</button>
+  <button onclick="order()">Замовити</button>
+</div>
+
+<!-- ФУТЕР -->
+<div class="footer">
+  Instagram: candleshome.store<br>
+  Telegram: Candles_Home_Catalog
 </div>
 
 <script>
-
 let cart = [];
 
-function openPage(page){
-document.getElementById("home").style.display="none";
-["loft","classic","dessert","kashpo"].forEach(i=>{
-document.getElementById(i).style.display="none";
-});
-document.getElementById(page).style.display="block";
-}
-
-function back(){
-document.getElementById("home").style.display="block";
-["loft","classic","dessert","kashpo"].forEach(i=>{
-document.getElementById(i).style.display="none";
-});
-}
-
 function toggleCart(){
-document.querySelector(".cart").classList.toggle("active");
-document.querySelector(".overlay").classList.toggle("active");
-}
-
-function addToCart(item){
-cart.push(item);
-document.getElementById("cart-items").innerHTML = cart.join("<br>");
+  document.querySelector(".cart").classList.toggle("active");
+  document.querySelector(".overlay").classList.toggle("active");
 }
 
 function order(){
-
 let name = document.getElementById("name").value;
 let phone = document.getElementById("phone").value;
 
@@ -278,33 +203,12 @@ alert("Заповни дані");
 return;
 }
 
-let text = "Замовлення:\n"+cart.join(", ")+"\nІм'я:"+name+"\nТел:"+phone;
+let text = "Замовлення:\n" + name + "\n" + phone;
 
-let url = "https://api.telegram.org/bot8706193551:AAELif4O7facDZT6JKYQGRpqx5kBsJ3CkyE/sendMessage?chat_id=862977657&text="+encodeURIComponent(text);
+let url = "https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA/sendMessage?chat_id=862977657&text=" + encodeURIComponent(text);
 
-fetch("https://api.telegram.org/bot8309821481:AAFJUBalSpC1njbBzzyPu1yNet99zS3SHBU/sendMessage", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    chat_id: 8629717657,
-    text: text
-  })
-})
-.then(res => res.json())
-.then(data => {
-  if (data.ok) {
-    alert("Відправлено ✅");
-  } else {
-    alert("Помилка: " + data.description);
-  }
-})
-.catch(() => {
-  alert("Помилка мережі");
-});
+window.open(url);
 }
-
 </script>
 
 </body>
