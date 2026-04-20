@@ -212,6 +212,14 @@ a{
   a, .card{
   -webkit-tap-highlight-color: transparent;
   }
+  .page{
+  display:none;
+  padding:20px;
+}
+
+.page.active{
+  display:block;
+}
 </style>
   
 </head>
@@ -239,20 +247,32 @@ a{
 
 <!-- категории -->
 <!-- категории -->
-<div class="grid">
-  <a href="#classic" class="card">Classic</a>
-  <a href="#loft" class="card">Loft</a>
-  <a href="#dessert" class="card">Десертні</a>
-  <a href="#kashpo" class="card">Кашпо</a>
-</div>
+<div class="card" onclick="openPage('classic')">Classic</div>
+<div class="card" onclick="openPage('loft')">Loft</div>
+<div class="card" onclick="openPage('dessert')">Десертні</div>
+<div class="card" onclick="openPage('kashpo')">Кашпо</div>
 
 <!-- страницы -->
-<div id="classic">Тут Classic</div>
-<div id="loft">Тут Loft</div>
-<div id="dessert">Тут Десертні</div>
-<div id="kashpo">Тут Кашпо</div>
+<div id="pages">
+
+  <div class="page" id="classic">
+    <h2>Classic</h2>
+  </div>
+
+  <div class="page" id="loft">
+    <h2>Loft</h2>
+  </div>
+
+  <div class="page" id="dessert">
+    <h2>Десертні</h2>
+  </div>
+
+  <div class="page" id="kashpo">
+    <h2>Кашпо</h2>
+  </div>
+ 
 </div>
-<!-- корзина -->
+<-- корзина -->
   <div class="cart">
   <div class="close" onclick="toggleCart()">✖</div>
 
@@ -273,6 +293,13 @@ a{
 </div>
 
 <script>
+ function openPage(id){
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+ }
 function toggleCart(){
   document.querySelector(".cart").classList.toggle("active");
 }
