@@ -107,6 +107,7 @@ h1{
   padding:20px;
   transition:0.3s;
   z-index:999;
+  overflow:auto;
 }
 
 .cart.active{
@@ -116,7 +117,23 @@ h1{
 .cart-header{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   margin-bottom:15px;
+}
+
+.cart-header span{
+  font-size:20px;
+  font-weight:700;
+}
+
+.cart-header button{
+  width:35px;
+  height:35px;
+  border:none;
+  background:#111;
+  color:#fff;
+  border-radius:8px;
+  cursor:pointer;
 }
 
 #cart-items{
@@ -195,29 +212,22 @@ h1{
 </div>
 
 <!-- КОРЗИНА -->
-<div class="cart" id="cart">
-
 <div class="cart-header">
-<span>Кошик</span>
-<button onclick="toggleCart()">✖</button>
+    <span>Кошик</span>
+    <button onclick="toggleCart()">✖</button>
+  </div>
+
+  <div id="cart-items">Порожньо</div>
+
+  <div class="total" id="total">Разом: 0 грн</div>
+
+  <input id="name" placeholder="Ім’я">
+  <input id="phone" placeholder="Телефон">
+
+  <button onclick="order()">Замовити</button>
+
 </div>
-
-<div id="cart-items">Порожньо</div>
-
-<div class="total" id="total">Разом: 0 грн</div>
-
-<input id="name" placeholder="Ім’я">
-<input id="phone" placeholder="Телефон">
-
-<button onclick="order()">Замовити</button>
-
-</div>
-
-<div class="footer">
-Instagram: candleshome.store<br>
-Telegram: Candles_Home_Catalog
-</div>
-
+  
 <script>
 function toggleCart(){
   document.getElementById("cart").classList.toggle("active");
@@ -238,7 +248,9 @@ function removeItem(i){
 }
 
 function renderCart(){
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  let cart = JSON.parse(localStorage.getIte<div class="cart" id="cart">
+
+  m("cart") || "[]");
 
   let html = "";
   let total = 0;
