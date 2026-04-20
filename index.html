@@ -34,13 +34,14 @@ gap:15px;
 padding:15px;
 }
 
-/* карточка */
+/* карточки */
 .card{
 background:rgba(255,255,255,0.05);
 backdrop-filter:blur(15px);
 border-radius:20px;
 padding:10px;
 text-align:center;
+cursor:pointer;
 }
 
 .card img{
@@ -64,7 +65,8 @@ display:flex;
 align-items:center;
 justify-content:center;
 font-size:22px;
-z-index:999;
+z-index:1000;
+cursor:pointer;
 }
 
 /* overlay */
@@ -98,6 +100,7 @@ backdrop-filter:blur(25px);
 transition:0.4s;
 padding:20px;
 z-index:999;
+overflow:auto;
 }
 
 .cart.active{
@@ -119,6 +122,7 @@ margin-top:10px;
 border:none;
 border-radius:12px;
 font-weight:600;
+cursor:pointer;
 }
 </style>
 
@@ -162,25 +166,25 @@ font-weight:600;
 <div id="loft" style="display:none;padding:20px;">
 <button onclick="back()">← Назад</button>
 <h2>Loft</h2>
-<button onclick="addToCart('Loft')">Добавить</button>
+<button onclick="addToCart('Loft')">Додати</button>
 </div>
 
 <div id="classic" style="display:none;padding:20px;">
 <button onclick="back()">← Назад</button>
 <h2>Classic</h2>
-<button onclick="addToCart('Classic')">Добавить</button>
+<button onclick="addToCart('Classic')">Додати</button>
 </div>
 
 <div id="dessert" style="display:none;padding:20px;">
 <button onclick="back()">← Назад</button>
 <h2>Десертні</h2>
-<button onclick="addToCart('Dessert')">Добавить</button>
+<button onclick="addToCart('Dessert')">Додати</button>
 </div>
 
 <div id="kashpo" style="display:none;padding:20px;">
 <button onclick="back()">← Назад</button>
 <h2>Кашпо</h2>
-<button onclick="addToCart('Kashpo')">Добавить</button>
+<button onclick="addToCart('Kashpo')">Додати</button>
 </div>
 
 <!-- кнопка -->
@@ -204,15 +208,19 @@ font-weight:600;
 
 let cart = [];
 
-function openPage(p){
+function openPage(page){
 document.getElementById("home").style.display="none";
-["loft","classic","dessert","kashpo"].forEach(i=>document.getElementById(i).style.display="none");
-document.getElementById(p).style.display="block";
+["loft","classic","dessert","kashpo"].forEach(i=>{
+document.getElementById(i).style.display="none";
+});
+document.getElementById(page).style.display="block";
 }
 
 function back(){
 document.getElementById("home").style.display="block";
-["loft","classic","dessert","kashpo"].forEach(i=>document.getElementById(i).style.display="none");
+["loft","classic","dessert","kashpo"].forEach(i=>{
+document.getElementById(i).style.display="none";
+});
 }
 
 function toggleCart(){
@@ -237,7 +245,7 @@ return;
 
 let text = "Замовлення:\n"+cart.join(", ")+"\nІм'я:"+name+"\nТел:"+phone;
 
-let url = "https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA/sendMessage?chat_id=862977657&text="+encodeURIComponent(text);
+let url = "https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA/sendMessage?chat_id=862977657&text=" +encodeURIComponent(text);
 
 fetch(url)
 .then(r=>r.json())
@@ -247,6 +255,9 @@ alert("Відправлено 🔥");
 }else{
 alert("Помилка: "+d.description);
 }
+})
+.catch(()=>{
+alert("Помилка мережі");
 });
 
 }
