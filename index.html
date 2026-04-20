@@ -10,9 +10,7 @@ body{
   margin:0;
   font-family:Arial;
   color:#fff;
-
-  background:
-    radial-gradient(circle at top, #4a3b2a 0%, #1a1a1a 50%, #000 100%);
+  background:radial-gradient(circle at top,#4a3b2a,#1a1a1a,#000);
 }
 
 /* заголовок */
@@ -30,25 +28,20 @@ h1{
 .slides{
   display:flex;
   gap:10px;
-  animation:scroll 25s linear infinite;
+  animation:scroll 30s linear infinite;
 }
 
 .slide{
   min-width:260px;
   height:130px;
-
   display:flex;
   align-items:center;
   justify-content:center;
-
   border-radius:20px;
 
-  background:
-    linear-gradient(145deg, rgba(255,200,120,0.25), rgba(255,255,255,0.08));
+  background:linear-gradient(145deg,rgba(255,200,120,0.25),rgba(255,255,255,0.08));
 
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.4),
-    0 0 25px rgba(255,180,80,0.15);
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
 @keyframes scroll{
@@ -69,69 +62,79 @@ h1{
   display:flex;
   align-items:center;
   justify-content:center;
-
   height:110px;
-
   border-radius:20px;
 
-  background:
-    linear-gradient(145deg, rgba(255,220,150,0.15), rgba(255,255,255,0.05));
-
+  background:linear-gradient(145deg,rgba(255,220,150,0.15),rgba(255,255,255,0.05));
   border:1px solid rgba(255,200,120,0.2);
 
   font-size:18px;
   font-weight:600;
-
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.5),
-    0 0 20px rgba(255,180,80,0.1);
 }
 
-/* убираем синие ссылки */
+/* ссылки */
 a{
   text-decoration:none;
   color:#fff;
 }
 
-/* корзина */
-.cart{
-  margin:20px;
+/* кнопка корзины */
+.cart-btn{
+  position:fixed;
+  top:20px;
+  right:20px;
 
-  padding:20px;
-  border-radius:20px;
+  width:55px;
+  height:55px;
 
-  background:rgba(255,255,255,0.06);
-  backdrop-filter:blur(20px);
+  border-radius:50%;
+  background:rgba(255,255,255,0.1);
 
-  border:1px solid rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+  cursor:pointer;
 }
 
-#cart-items{
-  text-align:center;
-  color:#aaa;
-  margin-bottom:10px;
+/* корзина */
+.cart{
+  position:fixed;
+  top:0;
+  right:-100%;
+
+  width:85%;
+  height:100%;
+
+  padding:20px;
+
+  background:rgba(20,20,20,0.95);
+  backdrop-filter:blur(25px);
+
+  transition:0.3s;
+}
+
+.cart.active{
+  right:0;
 }
 
 .cart input{
   width:100%;
   padding:14px;
   margin-bottom:10px;
-
   border-radius:14px;
-  border:1px solid rgba(255,255,255,0.08);
-  background:rgba(255,255,255,0.05);
-
+  border:none;
+  background:rgba(255,255,255,0.1);
   color:#fff;
 }
 
 .cart button{
   width:100%;
   padding:16px;
-
   border:none;
   border-radius:16px;
-
-  background:linear-gradient(145deg,#4a4a4a,#1a1a1a);
+  background:#444;
   color:#fff;
 }
 
@@ -149,6 +152,9 @@ a{
 
 <h1>CANDLES HOME</h1>
 
+<!-- кнопка корзины -->
+<div class="cart-btn" onclick="toggleCart()">🛒</div>
+
 <!-- баннер -->
 <div class="slider">
   <div class="slides">
@@ -157,7 +163,6 @@ a{
     <div class="slide">Promo3</div>
     <div class="slide">Promo4</div>
 
-    <!-- дубликат для бесконечности -->
     <div class="slide">Promo1</div>
     <div class="slide">Promo2</div>
     <div class="slide">Promo3</div>
@@ -192,11 +197,15 @@ a{
 </div>
 
 <script>
+function toggleCart(){
+  document.querySelector(".cart").classList.toggle("active");
+}
+
 function order(){
   let name = document.getElementById("name").value;
   let phone = document.getElementById("phone").value;
 
-  let text = "🔥 Замовлення\n\n👤 " + name + "\n📞 " + phone;
+  let text = "🔥 Замовлення\n👤 " + name + "\n📞 " + phone;
 
   fetch("https://api.telegram.org/bot8309821481:AA.../sendMessage", {
     method:"POST",
@@ -205,13 +214,9 @@ function order(){
       chat_id:"862977657",
       text:text
     })
-  })
-  .then(res=>res.json())
-  .then(data=>{
-    if(data.ok){
-      alert("Заявка відправлена 🔥");
-    }
   });
+
+  alert("Заявка відправлена 🔥");
 }
 </script>
 
