@@ -1,33 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CANDLES HOME</title>
+
 <style>
 body{
+  margin:0;
+  font-family:Arial;
+  color:#fff;
+
   background:
-    radial-gradient(circle at top, #3a3a3a 0%, #1a1a1a 40%, #000 100%);
+    radial-gradient(circle at top, #4a3b2a 0%, #1a1a1a 50%, #000 100%);
 }
 
 /* заголовок */
 h1{
-  color:#f5f5f5;
-  text-shadow:
-    0 0 10px rgba(255,200,120,0.2),
-    0 0 25px rgba(255,180,80,0.1);
+  padding:20px;
+  margin:0;
 }
 
-/* баннеры */
+/* баннер */
 .slider{
   overflow:hidden;
   margin:15px;
-  border-radius:20px;
 }
 
 .slides{
   display:flex;
   gap:10px;
-  animation:scroll 20s linear infinite;
+  animation:scroll 25s linear infinite;
 }
 
 .slide{
-  min-width:250px;
-  height:120px;
+  min-width:260px;
+  height:130px;
 
   display:flex;
   align-items:center;
@@ -35,11 +43,12 @@ h1{
 
   border-radius:20px;
 
-  background:rgba(255,255,255,0.1);
-}
+  background:
+    linear-gradient(145deg, rgba(255,200,120,0.25), rgba(255,255,255,0.08));
+
   box-shadow:
     0 10px 30px rgba(0,0,0,0.4),
-    0 0 20px rgba(255,255,255,0.08);
+    0 0 25px rgba(255,180,80,0.15);
 }
 
 @keyframes scroll{
@@ -47,7 +56,7 @@ h1{
   100%{transform:translateX(-50%);}
 }
 
-/* карточки */
+/* сетка */
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -55,269 +64,154 @@ h1{
   padding:15px;
 }
 
+/* карточки */
 .card{
   display:flex;
   align-items:center;
   justify-content:center;
 
-  height:100px;
+  height:110px;
 
   border-radius:20px;
 
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(20px);
+  background:
+    linear-gradient(145deg, rgba(255,220,150,0.15), rgba(255,255,255,0.05));
 
-  border:1px solid rgba(255,255,255,0.1);
+  border:1px solid rgba(255,200,120,0.2);
 
-  color:#fff;
   font-size:18px;
   font-weight:600;
 
-  box-shadow:0 8px 25px rgba(0,0,0,0.4);
-}
-
-.card:hover{
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.25), rgba(255,255,255,0.08));
-
   box-shadow:
-    0 15px 40px rgba(0,0,0,0.5),
-    0 0 30px rgba(255,255,255,0.15);
+    0 10px 30px rgba(0,0,0,0.5),
+    0 0 20px rgba(255,180,80,0.1);
 }
 
-.card:active{
-  transform:scale(0.98);
-}
-
-/* кнопка корзины */
-.cart-btn{
-  position:fixed;
-  top:20px;
-  right:20px;
-  width:56px;
-  height:56px;
-  border-radius:50%;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
-  backdrop-filter:blur(20px);
-  border:1px solid rgba(255,255,255,0.08);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
+/* убираем синие ссылки */
+a{
+  text-decoration:none;
   color:#fff;
-  z-index:1000;
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-}
-
-/* overlay */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.55);
-  backdrop-filter:blur(6px);
-  opacity:0;
-  pointer-events:none;
-  transition:0.3s;
-  z-index:998;
-}
-
-.overlay.active{
-  opacity:1;
-  pointer-events:auto;
 }
 
 /* корзина */
 .cart{
+  margin:20px;
 
-/* поля */
-input{
-  width:100%;
-  padding:13px 14px;
-  margin:8px 0;
-  border:none;
-  outline:none;
-  border-radius:14px;
-  color:#fff;
-  background:rgba(255,255,255,0.06);
-  border:1px solid rgba(255,255,255,0.06);
-  box-sizing:border-box;
-}
-
-input::placehol.cart{
-  margin-top:30px;
   padding:20px;
-
   border-radius:20px;
 
   background:rgba(255,255,255,0.06);
   backdrop-filter:blur(20px);
 
   border:1px solid rgba(255,255,255,0.08);
-
-  color:#fff;
-}
-
-.cart h3{
-  color:#fff;
-  margin-bottom:10px;
 }
 
 #cart-items{
-  color:#aaa;
   text-align:center;
+  color:#aaa;
   margin-bottom:10px;
 }
 
 .cart input{
-  color:#fff;
-}
-
-.cart input::placeholder{
-  color:#aaa;
-}der{
-  color:#bdbdbd;
-}
-
-/* кнопки */
-button{
   width:100%;
   padding:14px;
-  margin-top:10px;
-  border:none;
+  margin-bottom:10px;
+
   border-radius:14px;
-  font-weight:600;
-  color:#fff;
-  background:
-    linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
   border:1px solid rgba(255,255,255,0.08);
-  box-shadow:
-    0 8px 25px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-}
+  background:rgba(255,255,255,0.05);
 
-.footer{
-  text-align:center;
-  padding:26px 20px 30px;
-  color:#a8a8a8;
-  line-height:1.8;
-  border-top:1px solid rgba(255,255,255,0.08);
-  margin-top:20px;
-}
-  .cart hr{
-  border:none;
-  height:1px;
-  background:rgba(255,255,255,0.08);
-  margin:15px 0;
-}
-
-#cart-items{
-  text-align:center;
-  opacity:0.6;
-  font-size:14px;
-}
-
-.cart{
-  gap:10px;
-  box-shadow:
-    -10px 0 40px rgba(0,0,0,0.6),
-    -5px 0 20px rgba(255,200,120,0.05);
+  color:#fff;
 }
 
 .cart button{
-  background:linear-gradient(145deg,#4a4a4a,#1a1a1a);
-}
-</style><!DOCTYPE html>
-<html lang="uk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CANDLES HOME</title>
+  width:100%;
+  padding:16px;
 
+  border:none;
+  border-radius:16px;
+
+  background:linear-gradient(145deg,#4a4a4a,#1a1a1a);
+  color:#fff;
+}
+
+/* футер */
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#aaa;
+}
 </style>
+
 </head>
 
 <body>
 
 <h1>CANDLES HOME</h1>
 
-<!-- БАННЕРЫ -->
+<!-- баннер -->
 <div class="slider">
   <div class="slides">
-
     <div class="slide">Promo1</div>
     <div class="slide">Promo2</div>
     <div class="slide">Promo3</div>
     <div class="slide">Promo4</div>
 
-    <!-- дублируем для бесконечности -->
+    <!-- дубликат для бесконечности -->
     <div class="slide">Promo1</div>
     <div class="slide">Promo2</div>
     <div class="slide">Promo3</div>
     <div class="slide">Promo4</div>
-
   </div>
 </div>
 
-<!-- КАТЕГОРИИ -->
+<!-- категории -->
 <div class="grid">
-
-  <a href="classic.html" class="card">Classic</a>
-
-  <a href="loft.html" class="card">Loft</a>
-
-  <a href="dessert.html" class="card">Десертні</a>
-
-  <a href="kashpo.html" class="card">Кашпо</a>
-
+  <a href="#" class="card">Classic</a>
+  <a href="#" class="card">Loft</a>
+  <a href="#" class="card">Десертні</a>
+  <a href="#" class="card">Кашпо</a>
 </div>
-<!-- КАРЗИНА -->
-<h3>Кошик</h3>
 
+<!-- корзина -->
 <div class="cart">
+  <h3>Кошик</h3>
 
-<h3>Кошик</h3>
+  <div id="cart-items">Порожньо</div>
 
-<div id="cart-items">Порожньо</div>
+  <input id="name" placeholder="Ваше ім’я">
+  <input id="phone" placeholder="Телефон">
 
-<hr>
-
-<input id="name" placeholder="Ваше ім’я">
-<input id="phone" placeholder="Телефон">
-
-<button onclick="order()">Замовити</button>
-
+  <button onclick="order()">Замовити</button>
 </div>
-<!-- ФУТЕР -->
+
+<!-- футер -->
 <div class="footer">
   Instagram: candleshome.store<br>
   Telegram: Candles_Home_Catalog
 </div>
 
 <script>
-let cart = [];
-
-function toggleCart(){
-  document.querySelector(".cart").classList.toggle("active");
-  document.querySelector(".overlay").classList.toggle("active");
-}
-
 function order(){
-let name = document.getElementById("name").value;
-let phone = document.getElementById("phone").value;
+  let name = document.getElementById("name").value;
+  let phone = document.getElementById("phone").value;
 
-if(!name || !phone){
-alert("Заповни дані");
-return;
-}
+  let text = "🔥 Замовлення\n\n👤 " + name + "\n📞 " + phone;
 
-let text = "Замовлення:\n" + name + "\n" + phone;
-
-let url = "https://api.telegram.org/bot8309821481:AAFJUBalSpC1njbBzzyPu1yNet99zS3SHBU/sendMessage?chat_id=8629717657&text=" + encodeURIComponent(text);
-
-window.open(url);
+  fetch("https://api.telegram.org/bot8309821481:AA.../sendMessage", {
+    method:"POST",
+    headers:{ "Content-Type":"application/json" },
+    body: JSON.stringify({
+      chat_id:"862977657",
+      text:text
+    })
+  })
+  .then(res=>res.json())
+  .then(data=>{
+    if(data.ok){
+      alert("Заявка відправлена 🔥");
+    }
+  });
 }
 </script>
 
