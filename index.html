@@ -243,17 +243,23 @@ alert("Заповни дані");
 return;
 }
 
-let text = "Замовлення:\n"+cart.join(", ")+"\nІм'я:"+name+"\nТел:"+phone;
+let text =
+"Замовлення:\n" +
+cart.join(", ") +
+"\nІм'я: " + name +
+"\nТелефон: " + phone;
 
-let url = "https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA/sendMessage?chat_id=862977657&text=" +encodeURIComponent(text);
+const url =
+"https://api.telegram.org/bot8706193551:AAEyRssAkXNJt7gp6Nh45ArL7DKAJTEKhFA/sendMessage?chat_id=862977657&text="
++ encodeURIComponent(text);
 
 fetch(url)
-.then(r=>r.json())
-.then(d=>{
-if(d.ok){
-alert("Відправлено 🔥");
+.then(res => res.json())
+.then(data => {
+if(data.ok){
+alert("Заявка відправлена 🔥");
 }else{
-alert("Помилка: "+d.description);
+alert("Помилка: " + data.description);
 }
 })
 .catch(()=>{
