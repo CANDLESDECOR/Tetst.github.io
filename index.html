@@ -2,187 +2,22 @@
 <html lang="uk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>CANDLES HOME</title>
-
-<style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f5f5f5;
-  color:#111;
-}
-
-h1{
-  padding:20px;
-  margin:0;
-}
-
-/* кнопка корзины */
-.cart-btn{
-  position:fixed;
-  top:20px;
-  right:20px;
-  width:55px;
-  height:55px;
-  border-radius:50%;
-  background:#fff;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:22px;
-  box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  cursor:pointer;
-}
-
-/* ПРОМО */
-.slider{
-  overflow:hidden;
-  margin:15px;
-}
-
-.slides{
-  display:flex;
-  gap:10px;
-  animation:scroll 20s linear infinite;
-}
-
-.slide{
-  min-width:260px;
-  height:140px;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-@keyframes scroll{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-50%)}
-}
-
-/* КАТЕГОРИИ */
-.grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  padding:15px;
-}
-
-.card{
-  position:relative;
-  height:140px;
-  border-radius:20px;
-  overflow:hidden;
-  display:block;
-}
-
-.card img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.card span{
-  position:absolute;
-  bottom:10px;
-  left:12px;
-  color:#fff;
-  font-weight:700;
-  text-shadow:0 2px 6px rgba(0,0,0,0.7);
-}
-
-/* КОРЗИНА */
-.cart{
-  position:fixed;
-  right:-100%;
-  top:0;
-  width:90%;
-  height:100%;
-  background:#fff;
-  padding:20px;
-  transition:0.3s;
-  z-index:999;
-  overflow:auto;
-}
-
-.cart.active{
-  right:0;
-}
-
-.cart-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:15px;
-}
-
-.cart-header span{
-  font-size:20px;
-  font-weight:700;
-}
-
-.cart-header button{
-  width:35px;
-  height:35px;
-  border:none;
-  background:#111;
-  color:#fff;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-#cart-items{
-  margin-bottom:15px;
-}
-
-.total{
-  font-weight:700;
-  margin-bottom:10px;
-}
-
-.cart input{
-  width:100%;
-  padding:12px;
-  margin-bottom:10px;
-}
-
-.cart button{
-  width:100%;
-  padding:14px;
-  background:#111;
-  color:#fff;
-  border:none;
-}
-
-.footer{
-  text-align:center;
-  padding:20px;
-  color:#666;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <h1>CANDLES HOME</h1>
 
 <div class="cart-btn" onclick="toggleCart()">🛒</div>
 
-<!-- ПРОМО -->
+<!-- КАРУСЕЛЬ -->
 <div class="slider">
   <div class="slides">
-    <div class="slide"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1607082349566-187342175e2f"></div>
-
-    <div class="slide"><img src="https://images.unsplash.com/photo-1603006905003-be475563bc59"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1"></div>
-    <div class="slide"><img src="https://images.unsplash.com/photo-1607082349566-187342175e2f"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1602874801006-69c7f1c42c77"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1602874801006-69c7f1c42c77"></div>
+    <div class="slide"><img src="https://images.unsplash.com/photo-1519681393784-d120267933ba"></div>
   </div>
 </div>
 
@@ -190,112 +25,38 @@ h1{
 <div class="grid">
 
 <a href="classic.html" class="card">
-<img src="https://images.unsplash.com/photo-1603006905003-be475563bc59">
+<img src="https://images.unsplash.com/photo-1602874801006-69c7f1c42c77">
 <span>Classic</span>
 </a>
 
-<a href="loft.html" class="card">
-<img src="https://images.unsplash.com/photo-1596461404969-9ae70f2830c1">
+<a href="classic.html" class="card">
+<img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
 <span>Loft</span>
 </a>
 
-<a href="dessert.html" class="card">
-<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f">
+<a href="classic.html" class="card">
+<img src="https://images.unsplash.com/photo-1602874801006-69c7f1c42c77">
 <span>Десертні</span>
 </a>
 
-<a href="kashpo.html" class="card">
-<img src="https://images.unsplash.com/photo-1598300053653-3c6b0d9e0c6d">
+<a href="classic.html" class="card">
+<img src="https://images.unsplash.com/photo-1519681393784-d120267933ba">
 <span>Кашпо</span>
 </a>
 
 </div>
 
 <!-- КОРЗИНА -->
-<div class="cart-header">
-    <span>Кошик</span>
-    <button onclick="toggleCart()">✖</button>
-  </div>
-
-  <div id="cart-items">Порожньо</div>
-
-  <div class="total" id="total">Разом: 0 грн</div>
-
-  <input id="name" placeholder="Ім’я">
-  <input id="phone" placeholder="Телефон">
-
-  <button onclick="order()">Замовити</button>
-
+<div class="cart" id="cart">
+<div class="cart-top">
+Кошик
+<div class="close" onclick="toggleCart()">✖</div>
 </div>
-  
-<script>
-function toggleCart(){
-  document.getElementById("cart").classList.toggle("active");
-  renderCart();
-}
 
-function add(name, price){
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  cart.push({name, price});
-  localStorage.setItem("cart", JSON.stringify(cart));
-}
+<div id="cart-items"></div>
+<div id="total">Разом: 0 грн</div>
+</div>
 
-function removeItem(i){
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-  cart.splice(i,1);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  renderCart();
-}
-
-function renderCart(){
-  let cart = JSON.parse(localStorage.getIte<div class="cart" id="cart">
-
-  m("cart") || "[]");
-
-  let html = "";
-  let total = 0;
-
-  cart.forEach((item,i)=>{
-    html += `
-      <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
-        ${item.name} - ${item.price} грн
-        <span onclick="removeItem(${i})" style="cursor:pointer">❌</span>
-      </div>`;
-    total += item.price;
-  });
-
-  document.getElementById("cart-items").innerHTML =
-    cart.length ? html : "Порожньо";
-
-  document.getElementById("total").innerText =
-    "Разом: " + total + " грн";
-}
-
-function order(){
-  let name = document.getElementById("name").value;
-  let phone = document.getElementById("phone").value;
-
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-
-  let text = "Замовлення:\n";
-  cart.forEach(i=>{
-    text += i.name + " " + i.price + " грн\n";
-  });
-
-  text += "\n👤 " + name + "\n📞 " + phone;
-
-  fetch("https://api.telegram.org/botXXX/sendMessage", {
-    method:"POST",
-    headers:{"Content-Type":"application/json"},
-    body: JSON.stringify({
-      chat_id:"ТВОЙ_ID",
-      text:text
-    })
-  });
-
-  alert("Відправлено");
-  localStorage.removeItem("cart");
-}
-</script>
+<script src="cart.js"></script>
 </body>
 </html>
